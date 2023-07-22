@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
    jsLoaded = true;
 
     // for media query
-    var x = window.matchMedia("(max-width: 576px)")
+    var x = window.matchMedia("(max-width: 375px)")
     myFunction(x,modeIcon) // Call listener function at run time
     x.addListener(myFunction) // Attach listener function on state changes
     windowWidth = x
