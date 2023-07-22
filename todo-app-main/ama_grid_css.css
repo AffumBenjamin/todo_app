@@ -3,7 +3,7 @@
   background-size: cover;
   max-height: 300px;
   height: 285px;
-  background-image: url("C:/Users/AFFUM/Desktop/todo-app-main/todo-app-main/images/bg-mobile-dark.jpg");
+  background-image: url("/todo-app-main/images/bg-mobile-dark.jpg");
 }
 
 .attribution{
