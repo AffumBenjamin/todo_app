@@ -494,6 +494,7 @@ if (icon_svg.src =='images/icon-sun.svg') {
       document.getElementById("icon_click").src="images/icon-sun.svg";
   }
 changeBg(windowWidth,modeIcon);
+  return true
 }
 
 //change backgroundImage when icon is clicked
