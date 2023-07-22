@@ -406,7 +406,7 @@ function click_change(){
   let att = document.getElementById('att');
 
   //if sun modeIcon
-if (icon_svg.src =='/images/icon-sun.svg') {
+if (icon_svg.src =='images/icon-sun.svg') {
       modeIcon = 'sun';
       document.getElementsByTagName('p')[0].style.color = darkMode;
       // change body background to white
@@ -502,13 +502,11 @@ function changeBg(x,modeIcon) {
   if (x.matches) { // If media query matches
     //mobile background
           if (modeIcon=='sun') {// light mobile image
-            console.log(modeIcon + '-sun modeIcon mobile');
             document.getElementById('container-status').style.backgroundColor=lightMode
             document.getElementById('box_stat').style.backgroundColor=lightMode
             //att.style.color=lightMode;
             document.getElementById('bg').style.backgroundImage="url(images/bg-mobile-light.jpg)"
           }else if (modeIcon=='moon') {// dark mobile image
-            console.log(modeIcon + '-moon modeIcon mobile');
             document.getElementById('container-status').style.backgroundColor=darkMode
             //att.style.color=darkMode;
             document.getElementById('box_stat').style.backgroundColor=darkMode
@@ -516,7 +514,6 @@ function changeBg(x,modeIcon) {
           }
   } else {    //desktop background
           if (modeIcon=='sun') {
-            console.log(modeIcon + '-sun modeIcon desktop');
             att.style.color=darkMode;
             document.getElementsByTagName('a')[5].style.color=darkMode
             document.getElementsByTagName('a')[6].style.color=darkMode
@@ -524,7 +521,6 @@ function changeBg(x,modeIcon) {
             document.getElementById('bg').style.backgroundImage="url(images/bg-desktop-light.jpg)"
           }else if (modeIcon=='moon') {
             att.style.color=lightMode;
-            console.log(modeIcon+ '- modeIcon desktop');
             document.getElementsByTagName('a')[5].style.color=lightMode
             document.getElementsByTagName('a')[6].style.color=lightMode
             document.getElementById('container-status').style.backgroundColor=darkMode
