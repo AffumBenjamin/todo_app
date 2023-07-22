@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="stylesheet" href="C:/Users/AFFUM/Desktop/ama_grid_css.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="C:/Users/AFFUM/Desktop/todo-app-main/todo-app-main/images/favicon-32x32.png">
+
+  <script type="text/javascript" src="C:/Users/AFFUM/Desktop/ama_script.js"></script>
+  <title>Frontend Mentor | Todo app</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+
+<body>
+<div class="all" id="bg">
+
+</br>
+
+  <div class="grid">
+
+    <div class="fill_a"></br></div>
+
+    <div class="fill_b">
+       <img id="icon_click" src="C:/Users/AFFUM/Desktop/todo-app-main/todo-app-main/images/icon-sun.svg"
+      class="day_night" onClick=click_change()>
+       <h1 id="tdo"> TODO </h1>
+
+     <div class="add_input">
+      <ul>
+        <li>
+      <form>
+        <input id="todo_input"  type="text" placeholder="  Create a new todo.. " >
+      </form>
+        <div id="div_oval" onkeyup="mySearch()"></div> <!--create circle using div-->
+        </li>
+      </ul>
+
+    </br>
+      <div id="new_list"></div>
+
+    <div class = "container-new"></div>
+    <div id = "container-status"></div>
+
+      </div>
+
+    </br>
+
+    </div>
+    <div class="fill_c"></br></div>
+
+    </div>
+  </div>
+
+    <div class="attribution">
+      <p>Drag and drop to reorder</p>
+    <p id= "att">Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="#">Affum Benjamin</a> .</p>
+  </div>
+</body>
+</html>

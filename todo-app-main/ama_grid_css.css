@@ -1,0 +1,150 @@
+.all{
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-height: 300px;
+  height: 285px;
+  background-image: url("C:/Users/AFFUM/Desktop/todo-app-main/todo-app-main/images/bg-mobile-dark.jpg");
+}
+
+.attribution{
+  color: white;
+}
+
+.bg{
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+}
+
+a{
+  cursor: pointer;
+}
+
+body{  margin: 0;
+  background-color: #242424;
+}
+
+.p_clear{
+  cursor: pointer;
+}
+
+ul{
+  list-style: none;
+  display: inline;
+}
+
+li a:hover{
+  color: blue;
+  cursor: pointer;
+}
+.active{
+  background-color: #4CAF50;
+}
+
+li a{
+  display: inline;
+  padding: 5px 5px 5px 5px;
+  text-align: center;
+  color: #f9f9f9;
+  text-decoration: none;
+  text-decoration-line: initial;
+  text-decoration-color: initial;
+  transition: all 0.1s;
+  overflow: auto;
+}
+
+.div_oval{
+  float: left;
+  margin: 0 0 0 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+#list_ovals{
+  float: left;
+  margin-top: 0;
+  margin-bottom: 0;
+  flex-direction: row;
+  flex: 1;
+  display: flex;
+}
+
+li{
+  border-radius: 5px 5px 5px 5px;
+  padding-left: 5px;
+  padding-top: 4px;
+  height: 22px;
+}
+
+.att{
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+}
+
+#tdo{
+    float: left;
+    margin: 0 0 20px 0;
+    color: white;
+  }
+
+.add_input{
+  border-radius: 5px;
+  height: 34px;
+  float: inherit;
+  padding: 0;
+  clear: both;
+  box-shadow:0 10px 15px rgba(0,0,0,0.1);
+  }
+
+#todo_input{
+  background-color:inherit;
+  height: inherit;
+  float: right;
+  width: 85%;
+  color: #ffff;
+  border-radius: 5px 5px 5px 5px;
+  border-style: none;
+  padding: 0 0 0 0;
+  margin:  0 0 0 0;
+}
+
+.day_night{
+  float: right;}
+
+.grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+  "fill_a fill_a fill_a fill_a"
+  "fill_b fill_b fill_b fill_b"
+  "fill_c fill_c fill_c fill_c";
+  grid-gap: 10px;
+}
+
+.fill_a{grid-area: fill_a ;}
+.fill_b{grid-area: fill_b;}
+.fill_c{grid-area: fill_c;}
+
+@media screen and (min-width: 375px) {
+  .grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+    "fill_a fill_b fill_b fill_c"
+    "fill_a fill_b fill_b fill_c"
+    "fill_a fill_b fill_b fill_c";
+    grid-gap: 10px;
+  }
+}
+
+@media screen and (max-width: 374px) {
+  .grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+    "fill_a fill_a fill_a fill_a"
+    "fill_b fill_b fill_b fill_b"
+    "fill_c fill_c fill_c fill_c";
+    grid-gap: 10px;
+    padding: 10px;
+    }
+}
