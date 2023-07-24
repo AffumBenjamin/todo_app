@@ -15,16 +15,13 @@
   margin: 0 0 0 0;
 }
 
+
 a{
   cursor: pointer;
 }
 
 body{  margin: 0;
   background-color: #242424;
-}
-
-.p_clear{
-  cursor: pointer;
 }
 
 ul{
@@ -52,11 +49,23 @@ li a{
   overflow: auto;
 }
 
-.div_oval{
+#div_oval{
   float: left;
   margin: 0 0 0 0;
   cursor: pointer;
   user-select: none;
+}
+
+#box_stat{
+  box-shadow: -0.5px 3px 3px 0.5px #747283;
+}
+
+.container-new{
+  box-shadow: -0.5px 0px 0px 0.5px #747283;
+}
+
+#container-status{
+  box-shadow: -0.5px 1px 1px 0.5px #747283;
 }
 
 #list_ovals{
@@ -97,14 +106,15 @@ li{
 
 #todo_input{
   background-color:inherit;
-  height: inherit;
+  height: 21px;
   float: right;
-  width: 85%;
+  width: 92%;
+  box-shadow: 0.4px 1px 1px #747283;
   color: #ffff;
-  border-radius: 5px 5px 5px 5px;
+  border-radius: 0px 5px 5px 0px;
   border-style: none;
   padding: 0 0 0 0;
-  margin:  0 0 0 0;
+  margin:  0 1px 1px 0;
 }
 
 .day_night{
