@@ -23,10 +23,10 @@ This project proposes a solution for the challenge by Frontend Mentor. The key f
 - Used HTML, CSS custom properties, CSS Grid and Javascipt
 
 ### Useful resources
-- refer to this guide on how I added the drag and drop effect : [https://www.academia.edu/38165198/MPPT_implementation_in_Proteus_The_optimization_of_the_PV_energy_using_a_Costless_and_effective_Embedded_System
-](https://webdevtrick.com/html-drag-and-drop-list/)
+- refer to this guide on how I added the drag and drop effect :
+- [(https://webdevtrick.com/html-drag-and-drop-list/)]
 
 ## Author
 - Affum Benjamin
--  https://affumbenjamin.github.io/todo_app/
+-  [https://affumbenjamin.github.io/todo_app/]
   
