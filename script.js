@@ -805,51 +805,59 @@ if (document.getElementsByClassName('boxes').length!=0) {
 
   //add addEventListener to All
   function getAll(){
-    let all_tag = document.getElementById('tag_all').children[0]
+let all_tag = document.getElementById('tag_all').children[0]
+
     all_tag.addEventListener("click",event=>{
+      console.log(count+' items ALL test');
+
       //iterate through list and set all hidden items visible
       for (var i = 0; i < count; i++) {
-        var vBox = document.getElementsByClassName('container-new')[0].children[i]//box-inline
-        let vUl = document.getElementsByClassName('container-new')[0].children[i].children[0]//ul-inline
-        let vCir = vUl.children[0]//cir
-        let vTxt = vUl.children[1]//txt
-        let vCrs = vUl.children[2]//crs
-        let vP = vTxt.children[0]//p-inline block
-        vBox.style.visibility = 'visible'
-        vBox.style.display = 'inline'
-        vBox.style.backgroundColor = darkMode;
-        vBox.style.height='35px';
-        vBox.style.paddingBlockEnd='5px';
-        vBox.style.borderTopRightRadius = '2px'
-        vBox.style.borderTopLeftRadius = '2px'
-        vBox.style.borderBottom ='1px solid hsl(240deg 6.21% 65.29%)'
+        //if box is not removed
+        if (document.getElementsByClassName('container-new')[0].children[i]!=undefined) {
+          var vBox = document.getElementsByClassName('container-new')[0].children[i]//box-inline
+          let vUl = document.getElementsByClassName('container-new')[0].children[i].children[0]//ul-inline
+          let vCir = vUl.children[0]//cir
+          let vTxt = vUl.children[1]//txt
+          let vCrs = vUl.children[2]//crs
+          let vP = vTxt.children[0]//p-inline block
 
-        vUl.style.display = 'inline'
+          vBox.style.visibility = 'visible'
+          vBox.style.display = ''
+          vBox.style.backgroundColor = darkMode;
+          vBox.style.height='35px';
+          vBox.style.width='100%';
+          vBox.style.paddingBlockEnd='5px';
+          vBox.style.borderTopRightRadius = '2px'
+          vBox.style.borderTopLeftRadius = '2px'
+          vBox.style.borderBottom ='1px solid hsl(240deg 6.21% 65.29%)'
 
-        vCir.style.display = 'inline'
-        vCir.setAttribute('style','text-align: center')
-        vCir.style.height = '14px';
-        vCir.style.width = '14px';
-        vCir.style.marginLeft = '2px';
-        vCir.style.marginBlockEnd = 0;
-        vCir.style.marginBlockStart = 0;
-        vCir.style.marginTop = '5px';
-        vCir.style.display = 'inline-block';
+          vUl.style.display = 'inline'
 
-        vTxt.style.display = 'inline'
-        vTxt.style.marginBlockEnd = 0;
-        vTxt.style.marginBlockStart = 0;
-        vTxt.style.marginTop = '5px';
-        vTxt.style.width='80%'
-        vTxt.style.display = 'inline-block';
+          //vCir.style.display = 'inline'
+          vCir.setAttribute('style','text-align: center')
+          vCir.style.height = '14px';
+          vCir.style.width = '14px';
+          vCir.style.marginLeft = '2px';
+          vCir.style.marginBlockEnd = 0;
+          vCir.style.marginBlockStart = 0;
+          vCir.style.marginTop = '5px';
+          vCir.style.display = 'inline-block';
 
-        vCrs.style.display = 'inline'
-        vCrs.style.marginBlockEnd = 0;
-        vCrs.style.marginBlockStart = 0;
-        vCrs.style.marginTop = '5px';
-        vCrs.style.display = 'inline-block';
+          //vTxt.style.display = 'inline'
+          vTxt.style.marginBlockEnd = 0;
+          vTxt.style.marginBlockStart = 0;
+          vTxt.style.marginTop = '5px';
+          vTxt.style.width='80%'
+          vTxt.style.display = 'inline-block';
 
-        vP.style.display = 'inline-block'
+          //vCrs.style.display = 'inline'
+          vCrs.style.marginBlockEnd = 0;
+          vCrs.style.marginBlockStart = 0;
+          vCrs.style.marginTop = '5px';
+          vCrs.style.display = 'inline-block';
+
+          //vP.style.display = 'inline-block'
+        }
 
         list_ovals = i // circle icon
         lists = 'lists_'+i // todo item
@@ -862,25 +870,32 @@ if (document.getElementsByClassName('boxes').length!=0) {
 
         let newItem = document.getElementsByClassName('container-new')[0];
         newItem.style.height='30px';
-        newItem.style.borderTopRightRadius = '4px';
-        newItem.style.borderTopLeftRadius = '4px';
-
+        newItem.style.borderTopRightRadius = '5px';
+        newItem.style.borderTopLeftRadius = '5px';
         document.getElementsByClassName(li_cir)[0].style.display='inline'
         document.getElementsByClassName(li_txt)[0].style.display='inline'
         document.getElementsByClassName(li_crs)[0].style.display='inline'
+      }
 
-        if (document.getElementsByClassName('boxes')[i]!=undefined) {
-          document.getElementsByClassName('boxes')[i].style.paddingRight = '5px'
-          document.getElementsByClassName('boxes')[i].style.paddingTop = '9px'
-          document.getElementsByClassName('boxes')[i].style.paddingRight = '60px'
-        }
+      //hide scrolls
+      let lenScroll = 0
+      if (document.getElementsByClassName('complete')[0]!=undefined) {
+        // if any complete boxes exist
+        let cLen = document.getElementsByClassName('complete')[0].length
+          if (document.getElementsByClassName('boxes')[0]!=undefined){
+              let bLen = document.getElementsByClassName('boxes')[0].length
+              lenScroll = cLen + bLen
+          }
+      }else if (document.getElementsByClassName('boxes')!=undefined) {
+        // if there are only 'boxes'
+        let bLen = document.getElementsByClassName('boxes').length
+        lenScroll = bLen
+      }
 
-        if (document.getElementsByClassName('complete')[i]!=undefined) {
-          document.getElementsByClassName('complete')[i].style.paddingTop = '9px'
-          document.getElementsByClassName('complete')[i].style.paddingRight = '75px'
-          document.getElementsByClassName('complete')[i].style.paddingRight = '2px'
-        }
-
+      if (lenScroll<7) {
+          document.getElementsByClassName('container-new')[0].style.overflow='hidden'
+      }else {
+          document.getElementsByClassName('container-new')[0].style.overflow='scroll'
       }
 
       event.preventDefault();
@@ -899,7 +914,6 @@ if (document.getElementsByClassName('boxes').length!=0) {
           for (var i = 0; i < lenC; i++) {
             document.getElementsByClassName('complete')[i].style.visibility = 'hidden'
             document.getElementsByClassName('complete')[i].style.display = 'none'
-            console.log(i);
           }
       }else {
         console.log('no active todos');
@@ -910,6 +924,20 @@ if (document.getElementsByClassName('boxes').length!=0) {
     }else if (windowWidth == 'lesser') {
             p_counts.textContent = (itemsActive+' items active');
     }
+
+    //hide scrolls
+    let lenScroll = 0
+  if (document.getElementsByClassName('boxes')!=undefined) {
+      // if there are only 'boxes'
+      let bLen = document.getElementsByClassName('boxes').length
+      lenScroll = bLen
+    }
+
+    if (lenScroll<7) {
+        document.getElementsByClassName('container-new')[0].style.overflow='hidden'
+    }else {
+        document.getElementsByClassName('container-new')[0].style.overflow='scroll'
+    }
     event.preventDefault();
   });
 }
@@ -917,18 +945,16 @@ if (document.getElementsByClassName('boxes').length!=0) {
   function getCompleted(){
   let comp_tag = document.getElementById('tag_comp').children[0]
   comp_tag.addEventListener("click",event=>{
-    console.log(count+' all test');
 
     if (count!=0) {
       let lenC = document.getElementsByClassName('complete').length
       let lenB = document.getElementsByClassName('boxes').length
-      //hide 'complete' boxes
+      //show 'complete' boxes
           for (var i = 0; i < lenC; i++) {
             document.getElementsByClassName('complete')[i].style.visibility = 'visible'
-            document.getElementsByClassName('complete')[i].style.display = 'inline'
-            console.log(i);
+            document.getElementsByClassName('complete')[i].style.display = ''
           }
-
+      //hide active 'boxes'
           for (var i = 0; i < lenB; i++) {
             document.getElementsByClassName('boxes')[i].style.visibility = 'hidden'
             document.getElementsByClassName('boxes')[i].style.display = 'none'
@@ -937,6 +963,19 @@ if (document.getElementsByClassName('boxes').length!=0) {
       }else {
         console.log('no active todos');
       }
+      //hide scrolls
+      let lenScroll = 0
+      if (document.getElementsByClassName('complete')[0]!=undefined) {
+        // if any complete boxes exist
+        let cLen = document.getElementsByClassName('complete')[0].length
+        lenScroll = cLen
+      }
+
+      if (lenScroll<7) {
+          document.getElementsByClassName('container-new')[0].style.overflow='hidden'
+      }else {
+          document.getElementsByClassName('container-new')[0].style.overflow='scroll'
+      }
 
     event.preventDefault();
   });
@@ -944,24 +983,84 @@ if (document.getElementsByClassName('boxes').length!=0) {
 
   function clearCompleted(){
     var clear_all;
-    if (document.getElementById('tag_clear')!=null) {
-      clear_all = document.getElementById('tag_clear').children[0]
-    }else {
-      clear_all = document.getElementById('p_clear')
-    }
-  clear_all.addEventListener("click",event=>{
-
-        if (count!=0) {
-          let lenC = document.getElementsByClassName('complete').length
-          //hide 'complete' boxes
-              for (var i = 0; i <= lenC; i++) {
-                document.getElementsByClassName('complete')[i].remove()
-              }
-
+      if (document.getElementById('tag_clear')!=null) {
+        clear_all = document.getElementById('tag_clear')
+      }
+        clear_all.addEventListener("click",event=>{
+ 
+  for (var i = 0; i < count; i++) {
+      //hide 'complete' boxes
+      let lenC = document.getElementsByClassName('complete').length
+        if (lenC!=0) {
+          var k = 0;
+            //document.getElementsByClassName('complete')[k].remove()
+          boxes = 'box_'+k+'_cleared' // div containing circle and todo item
+          document.getElementsByClassName('complete')[k].setAttribute('class',boxes)
+          document.getElementsByClassName(boxes)[k].style.display = "none"
+          document.getElementsByClassName(boxes)[k].remove()
+          k++;
           }else {
             console.log('no active todos');
           }
 
+        }
+
+        //reassign new ids and classses list to 'boxes'
+                let lenBoxes = document.getElementsByClassName('boxes').length
+
+                for (var len = 0; len < lenBoxes; len++) {
+                    var box_num='box_'+len
+                    var cir_num='cir_'+len
+                    var txt_num='txt_'+len
+                    var crs_num='crs_'+len
+
+                    // get div for box
+                    if (document.getElementsByTagName('div')[len+8]!=null) {
+                      var changeboxId = document.getElementsByTagName('div')[len+8]
+                      changeboxId.setAttribute('id',box_num)
+                    }
+
+                    if (document.getElementsByTagName('div')[len+8].children[0].children[0]!=null) {
+                      var changeListClass = document.getElementsByTagName('div')[len+8].children[0].children[0]
+                      changeListClass.setAttribute('class',cir_num)
+                    }
+
+                    if (document.getElementsByTagName('div')[len+8].children[0].children[1]) {
+                      var changeListClass = document.getElementsByTagName('div')[len+8].children[0].children[1]
+                      changeListClass.setAttribute('class',txt_num)
+                    }
+
+                    if (document.getElementsByTagName('div')[len+8].children[0].children[2]) {
+                      var changeListClass = document.getElementsByTagName('div')[len+8].children[0].children[2]
+                      changeListClass.setAttribute('class',crs_num)
+                    }
+
+                    if (document.getElementsByTagName('div')[len+8].children[0].children[0].children[0]!=null) {//p
+                      var changeListClass = document.getElementsByTagName('div')[len+8].children[0].children[0].children[0]
+                      changeListClass.setAttribute('class',len)
+                    }
+
+                    if (document.getElementsByTagName('div')[len+8].children[0].children[1].children[0]!=null) {
+                      var changeListClass = document.getElementsByTagName('div')[len+8].children[0].children[1].children[0]
+                      changeListClass.setAttribute('class','cross_'+len)
+                    }
+
+                    if (document.getElementsByTagName('div')[len+8].children[0].children[2].children[0]!=null) {
+                      var changeListClass = document.getElementsByTagName('div')[len+8].children[0].children[2].children[0]
+                      changeListClass.setAttribute('class','lists_'+len)
+                      }
+                }
+
+                  rem = 1
+                  add = 0
+                  updateCounter(rem,add,lenBoxes)
+                  //hide scrolls
+                  let lenScroll = lenBoxes
+                  if (lenScroll<7) {
+                      document.getElementsByClassName('container-new')[0].style.overflow='hidden'
+                  }else {
+                      document.getElementsByClassName('container-new')[0].style.overflow='scroll'
+                  }
     event.preventDefault();
   });
 }
@@ -1024,14 +1123,36 @@ if (document.getElementsByClassName('boxes').length!=0) {
         changeListClass.setAttribute('class','lists_'+(i-1))
         }
       }
+      //hide scrolls
+      let lenScroll = 0
+      // if any complete boxes exist
+      if (document.getElementsByClassName('complete')[0]!=undefined) {
+        let cLen = document.getElementsByClassName('complete')[0].length
+          if (document.getElementsByClassName('boxes')[0]!=undefined){
+              let bLen = document.getElementsByClassName('boxes')[0].length
+              lenScroll = cLen + bLen
+          }
+      }else if (document.getElementsByClassName('boxes')!=undefined) {
+        // if there are only 'boxes'
+        let bLen = document.getElementsByClassName('boxes').length
+        lenScroll = bLen
+      }
+
+      if (lenScroll<7) {
+          document.getElementsByClassName('container-new')[0].style.overflow='hidden'
+      }else {
+          document.getElementsByClassName('container-new')[0].style.overflow='scroll'
+      }
+
     event.preventDefault();
       });
 }
 
   var holder = 0;//holds count or width
   function updateCounter(rem,add,holder){
-    //update item counting when width changes
-    if ( rem == 1 && add == 0) {
+      //update item counting when width changes
+  if ( rem == 1 && add == 0) {
+        console.log(holder+' items after removal');
               if (windowWidth == 'greater') {
                       document.getElementsByTagName('a')[0].textContent=(holder+' items left');
               }else {
@@ -1060,12 +1181,11 @@ if (document.getElementsByClassName('boxes').length!=0) {
                   }
             }
           }
-
   }
 
   // checks complete todos
   function createCheck(count,num){
-    var cnt = count;
+   var cnt = count;
     if (document.getElementsByClassName(num)[0].style.visibility=='hidden') {
       var cc = num;// number attached to each cicle
       var lc = document.getElementsByClassName('cir_'+cc)[0]
@@ -1094,10 +1214,8 @@ if (document.getElementsByClassName('boxes').length!=0) {
       bx.setAttribute('class','complete')
     }
     checked++;
-    itemsActive = cnt-checked
-  }
+    itemsActive = cnt-checked  }
 
-  
   function dragStart(e) {
     this.style.opacity = '0.4';
     dragSrcEl = this;
