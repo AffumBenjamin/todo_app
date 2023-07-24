@@ -6,7 +6,7 @@ var windowWidth, form, item;
 var count = 0;
 var newCount=0;
 var wrapper_stat,box_stat,ul,li_all,li_active, li_comp;
-var p_clear,p_counts,li_clear,li_counts;
+var tag_clear,p_counts,li_clear,li_counts;
 var a_all,a_active,a_comp,a_clear,a_counts; // a tag variables
 var clr,cnt;// clear and count
 var div;// circle
@@ -21,6 +21,10 @@ var itemCount = 0
 var rem,add;
 // holds remove or add states
 // 0 and 1 for each state
+var btn = document.querySelector('.add');
+var remove = document.querySelector('.draggable');
+var listItens = document.querySelectorAll('.draggable');
+
 document.addEventListener("DOMContentLoaded", function () {
 
   wrapper_stat = document.getElementById('container-status');
@@ -36,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
   li_all = document.createElement('li');
   li_active = document.createElement('li');
   li_comp = document.createElement('li');
-  p_clear = document.createElement('p');
+  tag_clear = document.createElement('a');
   a_all = document.createElement('a');
   a_active = document.createElement('a');
   a_comp = document.createElement('a');
@@ -44,16 +48,16 @@ document.addEventListener("DOMContentLoaded", function () {
   box_stat.setAttribute('id', 'box_stat');
   p_counts.setAttribute('id', 'p_counts');
   ul.setAttribute('id', 'p_ul');
-  p_clear.setAttribute('id', 'p_clear');
+  tag_clear.setAttribute('id', 'tag_clear');
 
   li_all.setAttribute('id', 'tag_all');
   li_active.setAttribute('id', 'tag_active');
   li_comp.setAttribute('id', 'tag_comp');
 
   //screen size for each background
-  if (window.innerWidth <= 375) {
+  if (window.innerWidth <= 576) {
     windowWidth = 'lesser';
-  }else {
+  }else if (window.innerWidth >= 576){
      windowWidth = 'greater';
    }
    // circles for tick actions
@@ -72,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
    jsLoaded = true;
 
     // for media query
-    var x = window.matchMedia("(max-width: 375px)")
+    var x = window.matchMedia("(max-width: 576px)")
     myFunction(x,modeIcon) // Call listener function at run time
     x.addListener(myFunction) // Attach listener function on state changes
     windowWidth = x
@@ -84,11 +88,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             switch (modeIcon) {
               case 'sun':
-              //sun icon visible
-              //background = white, text = dark
-                    if (document.getElementById('p_counts')!=null) {
+                //sun icon visible
+                  if (document.getElementById('p_counts')!=null) {
                       document.getElementById('p_counts').style.color = darkMode
-                      document.getElementById('p_clear').style.color = darkMode
+                      document.getElementById('tag_clear').style.color = darkMode
                       document.getElementById('box_stat').style.backgroundColor = lightMode
                       document.getElementById('container-status').style.backgroundColor = lightMode
                     }
@@ -108,11 +111,11 @@ document.addEventListener("DOMContentLoaded", function () {
               break;
 
               case 'moon':
-              //moon icon visible
+                        //moon icon visible
               //background = dark, text = white
                     if (document.getElementById('p_counts')!=null) {
                       document.getElementById('p_counts').style.color = lightMode
-                      document.getElementById('p_clear').style.color = lightMode
+                      document.getElementById('tag_clear').style.color = lightMode
                       document.getElementById('box_stat').style.backgroundColor = darkMode
                       document.getElementById('container-status').style.backgroundColor = darkMode
                     }
@@ -124,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
                       document.getElementsByTagName('a')[2].style.color = lightMode;
                       document.getElementById('container-status').style.backgroundColor = darkMode;
                     }
-                    if (windowWidth=='lesser') {
+                if (windowWidth=='lesser') {
                       document.getElementById('bg').style.backgroundImage="url(images/bg-mobile-dark.jpg)"
                     }else {
                       document.getElementById('bg').style.backgroundImage="url(images/bg-desktop-dark.jpg)"
@@ -138,12 +141,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // push attribution text down
     document.getElementById('bg').style.marginBottom = '350px'
+    document.getElementsByClassName('container-new')[0].style.marginBottom = '5px'
 
     // listening to inputs from form
     form = document.querySelector("form");
     form.addEventListener("submit", event => {
     if (form.elements.todo_input.value=='') {
-      alert('Write to add to your list')
+      alert('Write to add to your list');
     }else {
       item = form.elements.todo_input.value;
       event.preventDefault();
@@ -152,12 +156,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
    });
 
-  // listening to click for search
+    // listening to click for search
      var search_icon = document.getElementById('div_oval');
      search_icon.addEventListener("click", event => {
-       mySearch();// call search function
-       event.preventDefault()
+     mySearch();// call search function
+    event.preventDefault()
       });
+
 
       //item count
       for (var i = 0; i < count; i++) {
@@ -219,14 +224,14 @@ document.addEventListener("DOMContentLoaded", function () {
 function width_less(){
   wrapper_stat.style.paddingBottom='40px'
   wrapper_stat.appendChild(p_counts);
-  wrapper_stat.appendChild(p_clear);
+  wrapper_stat.appendChild(tag_clear);
 
   rem = 0;
   add = 0;
   holder = 'lesser';
   updateCounter(rem,add,holder)
 
-  p_clear.textContent = 'Clear Completed';
+  tag_clear.textContent = 'Clear Completed';
 
   input_container = document.getElementsByClassName('add_input')[0];
   input_container.appendChild(box_stat);
@@ -247,7 +252,7 @@ function width_less(){
   s_count.style.float = 'left';
   s_count.style.marginTop = '10px';
 
-  clear = document.getElementById('p_clear');
+  clear = document.getElementById('tag_clear');
   clear.style.marginBlockEnd = 0;
   clear.style.marginBlockStart = 0;
   clear.style.float = 'right';
@@ -291,24 +296,23 @@ function width_less(){
   //if dark or light modeIcon
     if (modeIcon == 'sun') {
       //sun icon visible
-      //background = white, text = dark
         document.getElementById('bg').style.backgroundImage="url(images/bg-mobile-light.jpg)"
         document.getElementById('box_stat').style.backgroundColor=lightMode
         document.getElementById('container-status').style.backgroundColor=lightMode
         //initialize text color of items left and clear completed to white(in dark modeIcon)
         document.getElementById('p_counts').style.color = darkMode
-        document.getElementById('p_clear').style.color = darkMode
+        document.getElementById('tag_clear').style.color = darkMode
       } else {
         document.getElementById('box_stat').style.backgroundColor=darkMode
         document.getElementById('container-status').style.backgroundColor=darkMode
         document.getElementById('bg').style.backgroundImage="url(images/bg-mobile-dark.jpg)"
         document.getElementById('p_counts').style.color = lightMode
-        document.getElementById('p_clear').style.color = lightMode
+        document.getElementById('tag_clear').style.color = lightMode
       }
 }
 
 function width_greater(){
-  wrapper_stat.style.paddingBottom='15px'
+    wrapper_stat.style.paddingBottom='15px'
   li_count = document.createElement('li');
   li_clear = document.createElement('li');
   a_count = document.createElement('a');
@@ -416,6 +420,7 @@ if (icon_svg.src =='images/icon-sun.svg') {
       att.style.color = darkMode;
       document.getElementsByClassName('attribution')[0].children[0].style.color = darkMode
       document.getElementsByTagName('a')[0].style.color = darkMode
+      document.getElementsByTagName('input')[0].style.color = darkMode
       document.getElementsByTagName('a')[1].style.color = darkMode
       document.getElementsByTagName('a')[2].style.color = darkMode
       document.getElementById('container-status').style.backgroundColor = lightMode
@@ -424,7 +429,7 @@ if (icon_svg.src =='images/icon-sun.svg') {
       if (document.getElementById('p_counts')!=null) {
         document.getElementById('box_stat').style.backgroundColor = lightMode
         document.getElementById('p_counts').style.color = darkMode
-        document.getElementById('p_clear').style.color = darkMode
+        document.getElementById('tag_clear').style.color = darkMode
       }
 
       if (document.getElementsByTagName('a')[3]!=null) {
@@ -438,13 +443,15 @@ if (icon_svg.src =='images/icon-sun.svg') {
               let bx = document.getElementsByClassName('boxes');
               bx[i].style.backgroundColor = lightMode;
               bx[i].children[0].children[1].style.color = darkMode
-
-                if ( bx[i] == undefined) {//if box is removed
-                  let bc = document.getElementsByClassName('complete');
-                  bc[i].style.backgroundColor = lightMode;
-                  bc[i].children[0].children[1].style.color = darkMode
-              }
             }
+        }
+
+    if (document.getElementsByClassName('complete').length!=0) {
+              for (var i = 0; i < document.getElementsByClassName('complete').length; i++) {
+                  let bc = document.getElementsByClassName('complete');
+                      bc[i].style.backgroundColor = lightMode;
+                      bc[i].children[0].children[1].style.color = darkMode
+              }
         }
 
       //change icon to moon
@@ -464,37 +471,36 @@ if (icon_svg.src =='images/icon-sun.svg') {
       document.getElementById('container-status').style.backgroundColor = darkMode
       document.getElementsByTagName('p')[0].style.color=lightMode;
         //handle error in desktop view when this returns null
-      if (document.getElementById('p_counts')!=null) {
+     if (document.getElementById('p_counts')!=null) {
         document.getElementById('p_counts').style.color = lightMode
-        document.getElementById('p_clear').style.color = lightMode
+        document.getElementById('tag_clear').style.color = lightMode
         document.getElementById('box_stat').style.backgroundColor = lightMode
-      }
-      //background when Completed and ... become inline with rest of list
+      }      //background when Completed and ... become inline with rest of list
       if (document.getElementsByTagName('a')[3]!=null) {
         document.getElementsByTagName('a')[3].style.color = lightMode
         document.getElementsByTagName('a')[4].style.color = lightMode
       }
       // get all the boxes and set their background color as one
-      // but some class names change from boxes to complete
+      // but some class names change from boxes to complete  
       if (document.getElementsByClassName('boxes').length!=0) {
-
-          for (var i = 0; i < document.getElementsByClassName('boxes').length; i++) {
+        for (var i = 0; i < document.getElementsByClassName('boxes').length; i++) {
               let bx = document.getElementsByClassName('boxes');
               bx[i].style.backgroundColor = darkMode;
               bx[i].children[0].children[1].style.color = lightMode
-
-                if ( bx[i] == undefined) {//if box is removed
-                  let bc = document.getElementsByClassName('complete');
-                  bc[i].style.backgroundColor = darkMode;
-                  bc[i].children[0].children[1].style.color = lightMode
-              }
             }
+        }
+
+        if (document.getElementsByClassName('complete').length!=0) {
+              for (var i = 0; i < document.getElementsByClassName('complete').length; i++) {
+                  let bc = document.getElementsByClassName('complete');
+                      bc[i].style.backgroundColor = darkMode
+                      bc[i].children[0].children[1].style.color = lightMode
+              }
         }
       //change icon to sun
       document.getElementById("icon_click").src="images/icon-sun.svg";
   }
 changeBg(windowWidth,modeIcon);
-  return true
 }
 
 //change backgroundImage when icon is clicked
@@ -505,12 +511,12 @@ function changeBg(x,modeIcon) {
           if (modeIcon=='sun') {// light mobile image
             document.getElementById('container-status').style.backgroundColor=lightMode
             document.getElementById('box_stat').style.backgroundColor=lightMode
-            //att.style.color=lightMode;
+            document.getElementsByTagName('input')[0].style.color = darkMode;//fontcolor for form input            //att.style.color=lightMode;
             document.getElementById('bg').style.backgroundImage="url(images/bg-mobile-light.jpg)"
           }else if (modeIcon=='moon') {// dark mobile image
             document.getElementById('container-status').style.backgroundColor=darkMode
-            //att.style.color=darkMode;
             document.getElementById('box_stat').style.backgroundColor=darkMode
+            document.getElementsByTagName('input')[0].style.color = lightMode
             document.getElementById('bg').style.backgroundImage="url(images/bg-mobile-dark.jpg)"
           }
   } else {    //desktop background
@@ -518,12 +524,14 @@ function changeBg(x,modeIcon) {
             att.style.color=darkMode;
             document.getElementsByTagName('a')[5].style.color=darkMode
             document.getElementsByTagName('a')[6].style.color=darkMode
+            document.getElementsByTagName('input')[0].style.color = darkMode
             document.getElementById('container-status').style.backgroundColor=lightMode
             document.getElementById('bg').style.backgroundImage="url(images/bg-desktop-light.jpg)"
           }else if (modeIcon=='moon') {
             att.style.color=lightMode;
             document.getElementsByTagName('a')[5].style.color=lightMode
             document.getElementsByTagName('a')[6].style.color=lightMode
+            document.getElementsByTagName('input')[0].style.color = lightMode
             document.getElementById('container-status').style.backgroundColor=darkMode
             document.getElementById('bg').style.backgroundImage="url(images/bg-desktop-dark.jpg)"
           }
@@ -559,7 +567,7 @@ function myFunction(x,modeIcon) {
       if (document.getElementById('box_stat')!=null) {
         document.getElementById('box_stat').remove()
         document.getElementById('p_counts').remove()
-        document.getElementById('p_clear').remove()
+        document.getElementById('tag_clear').remove()
       }
       width_greater();
       document.getElementById('tag_clear').style.display='inline'
@@ -594,16 +602,32 @@ function createNewDo(item){
      img_cross = document.createElement('img');
      br = document.createElement('br');
      img_check = document.createElement('img');
+     var newLen = 0;
 
-    // forming unique attribute names with counting number for each item added
-     list_ovals = count; // circle icon
-     lists = 'lists_'+count; // todo item
-     cross = 'cross_'+count; // cross
-     boxes = 'box_'+count; // div containing circle and todo item
-     li_cir = 'cir_'+count;
-     li_txt = 'txt_'+count;
-     li_crs = 'crs_'+count;
-     check_count = 'check_'+count
+// if some boxes already exist then get current number of boxes and set it to count
+if (document.getElementsByClassName('boxes').length!=0) {
+  newLen = document.getElementsByClassName('boxes').length
+  count = newLen
+  // forming unique attribute names with counting number for each item added
+   list_ovals = count; // circle icon
+   lists = 'lists_'+count; // todo item
+   cross = 'cross_'+count; // cross
+   boxes = 'box_'+count; // div containing circle and todo item
+   li_cir = 'cir_'+count;
+   li_txt = 'txt_'+count;
+   li_crs = 'crs_'+count;
+   check_count = 'check_'+count
+}else {
+  // forming unique attribute names with counting number for each item added
+   list_ovals = count; // circle icon
+   lists = 'lists_'+count; // todo item
+   cross = 'cross_'+count; // cross
+   boxes = 'box_'+count; // div containing circle and todo item
+   li_cir = 'cir_'+count;
+   li_txt = 'txt_'+count;
+   li_crs = 'crs_'+count;
+   check_count = 'check_'+count
+}
 
     p1.setAttribute('class', list_ovals);
     p2.setAttribute('class', lists);
@@ -632,8 +656,7 @@ function createNewDo(item){
     box.appendChild(br);
 
     document.getElementsByClassName('ul_td')[count].style.paddingLeft='0px'
-    // circle shaped icon (MADE FROM A PARAGRAGH)
-        let circle = document.getElementsByClassName(list_ovals)[0];
+          let circle = document.getElementsByClassName(list_ovals)[0];
         circle.setAttribute('style','text-align: center')
         circle.style.borderRadius = '50%'
         circle.style.justifyContent = 'center';
@@ -669,7 +692,6 @@ function createNewDo(item){
         newBox.style.backgroundColor = darkMode;
         newBox.style.height='35px';
         newBox.style.paddingBlockEnd='5px';
-        newBox.style.marginBottom='0.5px';
         newBox.style.borderTopRightRadius = '2px'
         newBox.style.borderTopLeftRadius = '2px'
         newBox.style.borderBottom ='1px solid hsl(240deg 6.21% 65.29%)'
@@ -678,12 +700,12 @@ function createNewDo(item){
       document.getElementsByClassName(li_txt)[0].style.display='inline'
       document.getElementsByClassName(li_crs)[0].style.display='inline'
 
-    var bx = document.getElementsByClassName('boxes');
-    var box_len = document.getElementsByClassName('boxes').length
-    count++;
-    newCount = count
-      // TODO: get all the boxes and set their bacground color as one
-    if (modeIcon=='sun') {
+      var bx = document.getElementsByClassName('boxes');
+      var box_len = document.getElementsByClassName('boxes').length
+      count++;
+      newCount = count
+
+  if (modeIcon=='sun') {
       for (var i = 0; i <= box_len; i++) {
         if (bx[i]!=undefined) {
           bx[i].style.backgroundColor = lightMode;
@@ -704,7 +726,7 @@ function createNewDo(item){
 
     // get all the boxes and set their background color as one
     // but some class names change from boxes to complete
-    if (document.getElementsByClassName('boxes').length!=0) {
+   if (document.getElementsByClassName('boxes').length!=0) {
         for (var i = 0; i < document.getElementsByClassName('boxes').length; i++) {
             let bx = document.getElementsByClassName('boxes');
               if (modeIcon=='sun') {
@@ -712,21 +734,22 @@ function createNewDo(item){
               }else {
                 bx[i].children[0].children[1].style.color = lightMode
               }
-
-              if ( bx[i] == undefined) {//if box is removed
-                let bc = document.getElementsByClassName('complete');
-                if (modeIcon=='sun') {
-                  bc[i].children[0].children[1].style.color = darkMode
-                }else {
-                  bc[i].children[0].children[1].style.color = lightMode
-                }
-            }
           }
       }
 
-    updateCounter(rem,add,holder);
+  if (document.getElementsByClassName('complete').length!=0) {
+        for (var i = 0; i < document.getElementsByClassName('complete').length; i++) {
+            let bc = document.getElementsByClassName('complete');
+              if (modeIcon=='sun') {
+                bc[i].children[0].children[1].style.color = darkMode
+              }else {
+                bc[i].children[0].children[1].style.color = lightMode
+          }
+        }
+  }
 
-    console.log(count +' count');
+    updateCounter(rem,add,holder);
+  
     addEventsDragAndDrop(box);
 
     //moving other contents down as list expands
@@ -1074,9 +1097,7 @@ function createNewDo(item){
     itemsActive = cnt-checked
   }
 
-  var btn = document.querySelector('.add');
-  var remove = document.querySelector('.draggable');
-
+  
   function dragStart(e) {
     this.style.opacity = '0.4';
     dragSrcEl = this;
@@ -1124,7 +1145,6 @@ function createNewDo(item){
     el.addEventListener('dragend', dragEnd, false);
   }
 
-  var listItens = document.querySelectorAll('.draggable');
   [].forEach.call(listItens, function(item) {
     addEventsDragAndDrop(item);
   });
