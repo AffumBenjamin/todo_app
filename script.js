@@ -430,7 +430,7 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => console.log("imgBgd
   let att = document.getElementById('att');
 
   //if sun modeIcon
-if (icon_svg.src =='file:///C:/Users/AFFUM/Desktop/todo-app-main/todo-app-main/images/icon-sun.svg') {
+if (icon_svg.src =='https://affumbenjamin.github.io/todo_app/images/icon-sun.svg) {
       modeIcon = 'sun';
       document.getElementsByTagName('p')[0].style.color = darkMode;
       // change body background to white
@@ -476,9 +476,9 @@ if (icon_svg.src =='file:///C:/Users/AFFUM/Desktop/todo-app-main/todo-app-main/i
 
 
       //change icon to moon
-      document.getElementById("icon_click").src="C:/Users/AFFUM/Desktop/todo-app-main/todo-app-main/images/icon-moon.svg";
+      document.getElementById("icon_click").src='https://affumbenjamin.github.io/todo_app/images/icon-moon.svg'
 
-    }else if(icon_svg.src =='file:///C:/Users/AFFUM/Desktop/todo-app-main/todo-app-main/images/icon-moon.svg'){
+    }else if(icon_svg.src =='https://affumbenjamin.github.io/todo_app/images/icon-moon.svg'){
       modeIcon = 'moon';
       // change body background to dark mode
       document.body.style.backgroundColor = darkMode;
@@ -522,7 +522,7 @@ if (icon_svg.src =='file:///C:/Users/AFFUM/Desktop/todo-app-main/todo-app-main/i
         }
 
       //change icon to sun
-      document.getElementById("icon_click").src="C:/Users/AFFUM/Desktop/todo-app-main/todo-app-main/images/icon-sun.svg";
+    document.getElementById("icon_click").src='https://affumbenjamin.github.io/todo_app/images/icon-sun.svg';
   }
 changeBg(windowWidth,modeIcon);
 }
@@ -665,7 +665,7 @@ changeBg(windowWidth,modeIcon);
     box.setAttribute('draggable', true);
     box.setAttribute('class', 'boxes');
     img_cross.setAttribute('class', cross);
-    img_cross.setAttribute('src', "C:/Users/AFFUM/Desktop/todo-app-main/todo-app-main/images/icon-cross.svg");
+    img_cross.setAttribute('src', "images/icon-cross.svg");
     box.setAttribute('id', boxes);
 
     li_circle.setAttribute('class', li_cir);
@@ -678,7 +678,7 @@ changeBg(windowWidth,modeIcon);
     li_cross.setAttribute('class', li_crs);
     ul_todo.setAttribute('class','ul_td')
     img_check.setAttribute('class', check_count)
-    img_check.setAttribute('src', "C:/Users/AFFUM/Desktop/todo-app-main/todo-app-main/images/icon-check.svg")
+    img_check.setAttribute('src', "images/icon-check.svg")
 
 /*
     // append children
