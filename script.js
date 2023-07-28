@@ -35,11 +35,11 @@ return new Promise((resolve, reject) => {
   });
 };
 
-const img1 = new Image();
-const img2 = new Image();
+const imgSun = new Image();
+const imgMoon = new Image();
 
-loadImg(img1, 'images/icon-sun.svg').then((img) => console.log("Icon sun loaded!")).catch(() => console.warn("img sun failed to load"));
-loadImg(img2, 'images/icon-moon.svg').then((img) => console.log("Icon moon loaded!")).catch(() => console.warn("img moon failed to load"))
+loadImg(imgSun, 'images/icon-sun.svg').then((img) => console.log("Icon sun loaded!"+imgSun)).catch(() => console.warn("img sun failed to load"));
+loadImg(imgMoon, 'images/icon-moon.svg').then((img) => console.log("Icon moon loaded!"+imgMoon)).catch(() => console.warn("img moon failed to load"))
 
 //------------------------------------
 
