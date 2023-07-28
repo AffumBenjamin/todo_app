@@ -26,6 +26,15 @@ var remove = document.querySelector('.draggable');
 var listItens = document.querySelectorAll('.draggable');
 var imageIcon // moon or sun icon
 
+imageIcon = document.images[0];
+var downloadingIcon = new Image();
+downloadingImage.onload = function(){
+imageIcon.src = this.src;
+};
+downloadingIcon.src = "images/icon-moon.svg";
+console.log('Icon downloaded')
+
+
 document.addEventListener("DOMContentLoaded", function () {
 
   wrapper_stat = document.getElementById('container-status');
@@ -82,16 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
     x.addListener(myFunction) // Attach listener function on state changes
     windowWidth = x
 
-    if (jsLoaded==true) {
-      
-      imageIcon = document.images[0];
-      var downloadingIcon = new Image();
-      downloadingImage.onload = function(){
-      imageIcon.src = this.src;
-        };
-      downloadingIcon.src = "images/icon-moon.svg";
-      console.log('Icon downloaded')
-      
+    if (jsLoaded==true) {      
       
       bg_pic = document.getElementById("bg");
       bg_pic.style.backgroundSize='cover';
