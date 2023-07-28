@@ -49,27 +49,27 @@ let imgDarkmLoaded = false
 
 // load images
 loadImg(imgSun, 'images/icon-sun.svg').then(
-  (img) => imgSunLoaded = true;
+  (img) => imgSunLoaded = true
   console.log("Icon sun loaded!")).catch(() => console.warn("img sun failed to load"));
 
 loadImg(imgMoon, 'images/icon-moon.svg').then(
-  (img) => imgMoonLoaded = true;
+  (img) => imgMoonLoaded = true
   console.log("Icon moon loaded!")).catch(() => console.warn("img moon failed to load"))
 
 loadImg(imgBgml, 'images/bg-mobile-light.jpg').then(
-  (img) =>imgLightmLoaded = true;
+  (img) =>imgLightmLoaded = true
   console.log("bglm loaded!")).catch(() => console.warn("failed to load imgBglm"));
 
 loadImg(imgBgdl, 'images/bg-desktop-light.jpg').then(
-  (img) => imgLightdLoaded = true;
+  (img) => imgLightdLoaded = true
   console.log("imgBglm loaded!")).catch(() => console.warn("failed to load imgBgld"))
 
 loadImg(imgBgmd, 'images/bg-mobile-dark.jpg').then(
-  (img) => imgDarkmLoaded = true;
+  (img) => imgDarkmLoaded = true
    console.log("imgBgdm loaded!")).catch(() => console.warn("failed to load imgBgdm"));
 
 loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then(
-  (img) => imgDarkdLoaded = true;
+  (img) => imgDarkdLoaded = true
   console.log("imgBgdd loaded!")).catch(() => console.warn("failed to load imgBgdd"))
 
   document.addEventListener("DOMContentLoaded", function () {
