@@ -631,31 +631,34 @@ function createNewDo(item){
      br = document.createElement('br');
      img_check = document.createElement('img');
      var newLen = 0;
+     inp_chk = document.createElement('input');
+     label = document.createElement('label');
 
-// if some boxes already exist then get current number of boxes and set it to count
-if (document.getElementsByClassName('boxes').length!=0) {
-  newLen = document.getElementsByClassName('boxes').length
-  count = newLen
-  // forming unique attribute names with counting number for each item added
-   list_ovals = count; // circle icon
-   lists = 'lists_'+count; // todo item
-   cross = 'cross_'+count; // cross
-   boxes = 'box_'+count; // div containing circle and todo item
-   li_cir = 'cir_'+count;
-   li_txt = 'txt_'+count;
-   li_crs = 'crs_'+count;
-   check_count = 'check_'+count
-}else {
-  // forming unique attribute names with counting number for each item added
-   list_ovals = count; // circle icon
-   lists = 'lists_'+count; // todo item
-   cross = 'cross_'+count; // cross
-   boxes = 'box_'+count; // div containing circle and todo item
-   li_cir = 'cir_'+count;
-   li_txt = 'txt_'+count;
-   li_crs = 'crs_'+count;
-   check_count = 'check_'+count
-}
+     // if some boxes already exist then get current number of boxes and set it to count
+  if (document.getElementsByClassName('boxes').length!=0) {
+      newLen = document.getElementsByClassName('boxes').length
+      count = newLen
+      // forming unique attribute names with counting number for each item added
+       list_ovals = count; // circle icon
+       lists = 'lists_'+count; // todo item
+       cross = 'cross_'+count; // cross
+       boxes = 'box_'+count; // div containing circle and todo item
+       li_cir = 'cir_'+count;
+       li_txt = 'txt_'+count;
+       li_crs = 'crs_'+count;
+       check_count = 'check_'+count
+    }else {
+        // forming unique attribute names with counting number for each item added
+       list_ovals = count; // circle icon
+       //lists = 'lists_'+count; // todo item
+       cross = 'cross_'+count; // cross
+       boxes = 'box_'+count; // div containing circle and todo item
+       li_cir = 'cir_'+count;
+       li_txt = 'txt_'+count;
+       li_crs = 'crs_'+count;
+       check_count = 'check_'+count
+       label_count = 'label_'+count
+   }
 
     p1.setAttribute('class', list_ovals);
     p2.setAttribute('class', lists);
@@ -663,49 +666,37 @@ if (document.getElementsByClassName('boxes').length!=0) {
     box.setAttribute('class', 'boxes');
     img_cross.setAttribute('class', cross);
     img_cross.setAttribute('src', "images/icon-cross.svg");
-    box.setAttribute('id', boxes);
+       box.setAttribute('id', boxes);
+
     li_circle.setAttribute('class', li_cir);
+    inp_chk.setAttribute('id', li_cir);//checkbox
+    inp_chk.setAttribute('class', list_ovals);//checkbox
+    inp_chk.setAttribute('type', 'checkbox');//checkbox
+    label.setAttribute('for', li_cir);//checkbox
+
     li_item.setAttribute('class', li_txt);
     li_cross.setAttribute('class', li_crs);
     ul_todo.setAttribute('class','ul_td')
     img_check.setAttribute('class', check_count)
     img_check.setAttribute('src', "images/icon-check.svg")
 
-    // append children
+     // append children
     wrapper.appendChild(box);
-    box.appendChild(ul_todo);
-      ul_todo.appendChild(li_circle);
-        li_circle.appendChild(p1);
-      ul_todo.appendChild(li_item);
-        li_item.appendChild(p2);
-      ul_todo.appendChild(li_cross);
-        li_cross.appendChild(img_cross);
-    p2.textContent = item; // the todo item
+    box.appendChild(inp_chk);
+    box.appendChild(label);
+    box.appendChild(img_cross);
+    label.textContent = item; // the todo item
     box.appendChild(br);
 
-    document.getElementsByClassName('ul_td')[count].style.paddingLeft='0px'
-          let circle = document.getElementsByClassName(list_ovals)[0];
-        circle.setAttribute('style','text-align: center')
-        circle.style.borderRadius = '50%'
-        circle.style.justifyContent = 'center';
-        circle.style.alignItems = 'center';
-        circle.style.height = '14px';
-        circle.style.width = '14px';
-        circle.style.border = '1px solid hsl(240deg 6.21% 65.29%)';
-        circle.style.marginLeft = '2px';
-        circle.style.marginBlockEnd = 0;
-        circle.style.marginBlockStart = 0;
-        circle.style.marginTop = '10px';
-        circle.style.display = 'inline-block';
+    if ((document.getElementsByClassName('boxes')[count])!=undefined) {
+      document.getElementsByClassName('boxes')[count].style.paddingLeft='0px'
+    }else {
+      count=checked
+      console.log(checked+' checker')
+      document.getElementsByClassName('boxes')[count].style.paddingLeft='0px'
+    }
 
-        let todos = document.getElementsByClassName(lists)[0];
-        todos.style.marginBlockEnd = 0;
-        todos.style.marginBlockStart = 0;
-        todos.style.marginTop = '10px';
-        todos.style.width='80%'
-        todos.style.display = 'inline-block';
-
-        let crss = document.getElementsByClassName(cross)[0];
+               let crss = document.getElementsByClassName(cross)[0];
         crss.style.marginBlockEnd = 0;
         crss.style.marginBlockStart = 0;
         crss.style.marginTop = '10px';
@@ -724,16 +715,16 @@ if (document.getElementsByClassName('boxes').length!=0) {
         newBox.style.borderTopLeftRadius = '2px'
         newBox.style.borderBottom ='1px solid hsl(240deg 6.21% 65.29%)'
 
-      document.getElementsByClassName(li_cir)[0].style.display='inline'
-      document.getElementsByClassName(li_txt)[0].style.display='inline'
-      document.getElementsByClassName(li_crs)[0].style.display='inline'
+        document.getElementsByClassName(list_ovals)[0].style.display='inline'
+        //document.getElementById(li_cir).style.display='inline'
+        document.getElementsByClassName(cross)[0].style.display='inline'
 
       var bx = document.getElementsByClassName('boxes');
       var box_len = document.getElementsByClassName('boxes').length
       count++;
       newCount = count
 
-  if (modeIcon=='sun') {
+if(modeIcon=='sun') {
       for (var i = 0; i <= box_len; i++) {
         if (bx[i]!=undefined) {
           bx[i].style.backgroundColor = lightMode;
@@ -754,13 +745,14 @@ if (document.getElementsByClassName('boxes').length!=0) {
 
     // get all the boxes and set their background color as one
     // but some class names change from boxes to complete
-   if (document.getElementsByClassName('boxes').length!=0) {
+    if (document.getElementsByClassName('boxes').length!=0) {
         for (var i = 0; i < document.getElementsByClassName('boxes').length; i++) {
             let bx = document.getElementsByClassName('boxes');
               if (modeIcon=='sun') {
-                bx[i].children[0].children[1].style.color = darkMode
+                //bx[i].children[0].children[1].style.color = darkMode
+                bx[i].style.color = darkMode
               }else {
-                bx[i].children[0].children[1].style.color = lightMode
+                bx[i].style.color = lightMode
               }
           }
       }
@@ -769,15 +761,14 @@ if (document.getElementsByClassName('boxes').length!=0) {
         for (var i = 0; i < document.getElementsByClassName('complete').length; i++) {
             let bc = document.getElementsByClassName('complete');
               if (modeIcon=='sun') {
-                bc[i].children[0].children[1].style.color = darkMode
+                bc[i].style.color = darkMode
               }else {
-                bc[i].children[0].children[1].style.color = lightMode
+                bc[i].style.color = lightMode
           }
         }
   }
 
     updateCounter(rem,add,holder);
-  
     addEventsDragAndDrop(box);
 
     //moving other contents down as list expands
@@ -821,8 +812,10 @@ if (document.getElementsByClassName('boxes').length!=0) {
       let pp = document.getElementsByClassName(list_ovals)[0];
       pp.addEventListener("click", event => {
       var class_num = pp.className;// get number attached to each cicle
-      pp.style.visibility = 'hidden'
-      pp.style.display = 'none'
+      //pp.style.visibility = 'hidden'
+      //pp.style.display = 'none'
+      //remove()
+      console.log('circle clicked');
       createCheck(count,class_num)
       event.preventDefault();
      });
@@ -971,8 +964,9 @@ let all_tag = document.getElementById('tag_all').children[0]
 }
 
   function getCompleted(){
-  let comp_tag = document.getElementById('tag_comp').children[0]
+let comp_tag = document.getElementById('tag_comp').children[0]
   comp_tag.addEventListener("click",event=>{
+    console.log(count+' all test');
 
     if (count!=0) {
       let lenC = document.getElementsByClassName('complete').length
@@ -981,6 +975,7 @@ let all_tag = document.getElementById('tag_all').children[0]
           for (var i = 0; i < lenC; i++) {
             document.getElementsByClassName('complete')[i].style.visibility = 'visible'
             document.getElementsByClassName('complete')[i].style.display = ''
+            console.log(i);
           }
       //hide active 'boxes'
           for (var i = 0; i < lenB; i++) {
@@ -1007,7 +1002,7 @@ let all_tag = document.getElementById('tag_all').children[0]
 
     event.preventDefault();
   });
-}
+  }
 
   function clearCompleted(){
     var clear_all;
@@ -1015,24 +1010,27 @@ let all_tag = document.getElementById('tag_all').children[0]
         clear_all = document.getElementById('tag_clear')
       }
         clear_all.addEventListener("click",event=>{
- 
-  for (var i = 0; i < count; i++) {
+
+  console.log(count+' all test');
+
+    for (var i = 0; i < count; i++) {
       //hide 'complete' boxes
       let lenC = document.getElementsByClassName('complete').length
         if (lenC!=0) {
           var k = 0;
             //document.getElementsByClassName('complete')[k].remove()
           boxes = 'box_'+k+'_cleared' // div containing circle and todo item
+          console.log(k+ "k's");
           document.getElementsByClassName('complete')[k].setAttribute('class',boxes)
           document.getElementsByClassName(boxes)[k].style.display = "none"
           document.getElementsByClassName(boxes)[k].remove()
+          console.log(boxes+' cleared');
           k++;
           }else {
             console.log('no active todos');
           }
 
         }
-
         //reassign new ids and classses list to 'boxes'
                 let lenBoxes = document.getElementsByClassName('boxes').length
 
@@ -1077,6 +1075,7 @@ let all_tag = document.getElementById('tag_all').children[0]
                       var changeListClass = document.getElementsByTagName('div')[len+8].children[0].children[2].children[0]
                       changeListClass.setAttribute('class','lists_'+len)
                       }
+
                 }
 
                   rem = 1
@@ -1094,7 +1093,7 @@ let all_tag = document.getElementById('tag_all').children[0]
 }
 
   function removeItem(){
-  //add addEventListener to cross
+   //add addEventListener to cross
     var cross_num;
     let cross_var = document.getElementsByClassName(cross)[0];
 
@@ -1103,9 +1102,11 @@ let all_tag = document.getElementById('tag_all').children[0]
     if (c_num.charAt(7)!='') {
       cross_num = c_num.charAt(6)+c_num.charAt(7);
       document.getElementById('box_'+cross_num).remove()
+      console.log('removed '+cross_num);
     }else {
       cross_num = c_num.charAt(6);
       document.getElementById('box_'+cross_num).remove()
+      console.log('removed '+cross_num);
     }
 
     count = count - 1;
@@ -1173,8 +1174,7 @@ let all_tag = document.getElementById('tag_all').children[0]
       }
 
     event.preventDefault();
-      });
-}
+      });}
 
   var holder = 0;//holds count or width
   function updateCounter(rem,add,holder){
@@ -1214,35 +1214,25 @@ let all_tag = document.getElementById('tag_all').children[0]
   // checks complete todos
   function createCheck(count,num){
    var cnt = count;
-    if (document.getElementsByClassName(num)[0].style.visibility=='hidden') {
-      var cc = num;// number attached to each cicle
-      var lc = document.getElementsByClassName('cir_'+cc)[0]
-      lc.appendChild(img_check)
-      img_check.setAttribute('style','text-align: center')
-      img_check.style.width='15px'
-      img_check.style.height='15px'
-      img_check.style.borderRadius = '40%'
-      lc.style.backgroundColor='linear-gradient hsl(192, 100%, 67%)'
-      img_check.style.paddingLeft = '2px';
-      img_check.style.border = '0.5px solid hsl(240deg 6.21% 65.29%)';
-      img_check.style.marginLeft = '2px';
-      img_check.style.marginBlockEnd = 0;
-      img_check.style.marginBlockStart = 0;
-      img_check.style.marginTop = '10px';
-      img_check.style.display = 'inline-block';
+    console.log(num+' console.log()');
+   var cc = num;// number attached to each cicle
+      console.log('cc >>> '+cc);
+      var lc = document.getElementById('cir_'+cc)
+
+      console.log(cnt+' count click '+ 'on element at cc'+cc);
+      document.getElementsByTagName('label')[cc].style.textDecoration = 'line-through'
+
+      //assign new classes(complete)
+      var bx;
+      if (lc.parentElement!=undefined) {
+        // get parent container(boxes)
+        var bx = lc.parentElement
+        bx.setAttribute('class','complete')
       }
-
-    document.getElementsByClassName('lists_'+cc)[0].style.textDecoration = 'line-through'
-
-    //assign new classes(complete)
-    var bx;
-    if (lc.parentElement.parentElement!=undefined) {
-      // get parent container(boxes)
-      var bx = lc.parentElement.parentElement
-      bx.setAttribute('class','complete')
-    }
     checked++;
-    itemsActive = cnt-checked  }
+    console.log(checked +' checked')
+    itemsActive = cnt-checked
+  }
 
   function dragStart(e) {
     this.style.opacity = '0.4';
