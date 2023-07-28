@@ -128,9 +128,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                     // set background for desktop and mobile dark mode
                     if (windowWidth=='lesser') {
-                      document.getElementById('bg').style.backgroundImage="url(images/bg-mobile-light.jpg)"
+                      //document.getElementById('bg').style.backgroundImage="url(images/bg-mobile-light.jpg)"
+                      document.getElementById('bg').style.backgroundImage=imgBgml.src
                       }else {
-                        document.getElementById('bg').style.backgroundImage="url(images/bg-desktop-light.jpg)"
+                        document.getElementById('bg').style.backgroundImage=imgBgdl.src
+                        //document.getElementById('bg').style.backgroundImage="url(images/bg-desktop-light.jpg)"
                       }
               break;
 
@@ -152,9 +154,11 @@ document.addEventListener("DOMContentLoaded", function () {
                       document.getElementById('container-status').style.backgroundColor = darkMode;
                     }
                 if (windowWidth=='lesser') {
-                      document.getElementById('bg').style.backgroundImage="url(images/bg-mobile-dark.jpg)"
+                      document.getElementById('bg').style.backgroundImage=imgBgmd.src
+                      //document.getElementById('bg').style.backgroundImage="url(images/bg-mobile-dark.jpg)"
                     }else {
-                      document.getElementById('bg').style.backgroundImage="url(images/bg-desktop-dark.jpg)"
+                    document.getElementById('bg').style.backgroundImage=imgBgdd
+                    //document.getElementById('bg').style.backgroundImage="url(images/bg-desktop-dark.jpg)"
                     }
 
                       break;
@@ -320,7 +324,7 @@ function width_less(){
   //if dark or light modeIcon
     if (modeIcon == 'sun') {
       //sun icon visible
-        document.getElementById('bg').style.backgroundImage="url(images/bg-mobile-light.jpg)"
+        document.getElementById('bg').style.backgroundImage=imgBgml.src
         document.getElementById('box_stat').style.backgroundColor=lightMode
         document.getElementById('container-status').style.backgroundColor=lightMode
         //initialize text color of items left and clear completed to white(in dark modeIcon)
@@ -412,14 +416,14 @@ function width_greater(){
       //sun icon visible
       //background = white, text = dark
       document.getElementById('container-status').style.backgroundColor=lightMode
-      document.getElementById('bg').style.backgroundImage="url(images/bg-desktop-light.jpg)"
+      document.getElementById('bg').style.backgroundImage=imgBgdl.src
       document.getElementById('tag_count').style.color = darkMode
       document.getElementById('tag_comp').style.color = darkMode
       document.getElementById('tag_active').style.color = darkMode
       document.getElementById('tag_all').style.color = darkMode
     }else{
       document.getElementById('container-status').style.backgroundColor=darkMode
-      document.getElementById('bg').style.backgroundImage="url(images/bg-desktop-dark.jpg)"
+      document.getElementById('bg').style.backgroundImage=imgBgdd.src
       document.getElementById('tag_count').style.color = lightMode
       document.getElementById('tag_comp').style.color = lightMode
       document.getElementById('tag_active').style.color = lightMode
@@ -434,7 +438,7 @@ function click_change(){
   let att = document.getElementById('att');
 
   //if sun modeIcon
-if (icon_svg.src =='images/icon-sun.svg') {
+if (icon_svg.src =='https://affumbenjamin.github.io/todo_app/images/icon-sun.svg') {
       modeIcon = 'sun';
       document.getElementsByTagName('p')[0].style.color = darkMode;
       // change body background to white
@@ -479,9 +483,9 @@ if (icon_svg.src =='images/icon-sun.svg') {
         }
 
       //change icon to moon
-      document.getElementById("icon_click").src="images/icon-moon.svg";
+      document.getElementById("icon_click").src='https://affumbenjamin.github.io/todo_app/images/icon-moon.svg'
 
-    }else if(icon_svg.src =='images/icon-moon.svg'){
+    }else if(icon_svg.src =='https://affumbenjamin.github.io/todo_app/images/icon-moon.svg'){
       modeIcon = 'moon';
       // change body background to dark mode
       document.body.style.backgroundColor = darkMode;
@@ -522,7 +526,7 @@ if (icon_svg.src =='images/icon-sun.svg') {
               }
         }
       //change icon to sun
-      document.getElementById("icon_click").src="images/icon-sun.svg";
+      document.getElementById("icon_click").src='https://affumbenjamin.github.io/todo_app/images/icon-sun.svg';
   }
 changeBg(windowWidth,modeIcon);
 }
@@ -536,12 +540,12 @@ function changeBg(x,modeIcon) {
             document.getElementById('container-status').style.backgroundColor=lightMode
             document.getElementById('box_stat').style.backgroundColor=lightMode
             document.getElementsByTagName('input')[0].style.color = darkMode;//fontcolor for form input            //att.style.color=lightMode;
-            document.getElementById('bg').style.backgroundImage="url(images/bg-mobile-light.jpg)"
+            document.getElementById('bg').style.backgroundImage=imgBgml.src
           }else if (modeIcon=='moon') {// dark mobile image
             document.getElementById('container-status').style.backgroundColor=darkMode
             document.getElementById('box_stat').style.backgroundColor=darkMode
             document.getElementsByTagName('input')[0].style.color = lightMode
-            document.getElementById('bg').style.backgroundImage="url(images/bg-mobile-dark.jpg)"
+            document.getElementById('bg').style.backgroundImage=imgBgmd.src
           }
   } else {    //desktop background
           if (modeIcon=='sun') {
@@ -550,14 +554,14 @@ function changeBg(x,modeIcon) {
             document.getElementsByTagName('a')[6].style.color=darkMode
             document.getElementsByTagName('input')[0].style.color = darkMode
             document.getElementById('container-status').style.backgroundColor=lightMode
-            document.getElementById('bg').style.backgroundImage="url(images/bg-desktop-light.jpg)"
+            document.getElementById('bg').style.backgroundImage=imgBgdl.src
           }else if (modeIcon=='moon') {
             att.style.color=lightMode;
             document.getElementsByTagName('a')[5].style.color=lightMode
             document.getElementsByTagName('a')[6].style.color=lightMode
             document.getElementsByTagName('input')[0].style.color = lightMode
             document.getElementById('container-status').style.backgroundColor=darkMode
-            document.getElementById('bg').style.backgroundImage="url(images/bg-desktop-dark.jpg)"
+            document.getElementById('bg').style.backgroundImage=imgBgdd.src
           }
         }
 }
@@ -581,10 +585,10 @@ function myFunction(x,modeIcon) {
     //mobile background
           if (modeIcon=='sun') {
             // light mobile image
-            document.getElementById('bg').style.backgroundImage="url(images/bg-mobile-light.jpg)"
+            document.getElementById('bg').style.backgroundImage=imgBgml.src
           }else if (modeIcon=='moon') {
             // dark mobile image
-            document.getElementById('bg').style.backgroundImage="url(images/bg-mobile-dark.jpg)"
+            document.getElementById('bg').style.backgroundImage=imgBgmd.src
           }
 
   } else {
@@ -603,10 +607,10 @@ function myFunction(x,modeIcon) {
     //desktop background
           if (modeIcon=='sun') {
             console.log(modeIcon + ' modeIcon desktop');
-            document.getElementById('bg').style.backgroundImage="url(images/bg-desktop-light.jpg)"
+            document.getElementById('bg').style.backgroundImage=imgBgmd.src
           }else if (modeIcon=='moon') {
             console.log(modeIcon+ ' modeIcon desktop');
-            document.getElementById('bg').style.backgroundImage="url(images/bg-desktop-light.jpg)"
+            document.getElementById('bg').style.backgroundImage=imgBgml.src
           }
         }
 }
