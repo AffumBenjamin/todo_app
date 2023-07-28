@@ -12,15 +12,16 @@ var clr,cnt;// clear and count
 var div;// circle
 var bg_pic,num;
 var checked = 0
-let itemsActive= 0
-var input_container,s_count,clear,ull,all,act,comp,box_2;
-var box,ul_todo,li_circle,p1,li_item,p2,li_cross,img_cross,br,img_check, list_ovals ,lists,cross,boxes ,li_cir,li_txt ,li_crs, check_count
+var input_container,s_count,clear,ull,all,act,comp,box_2, box,ul_todo,li_circle,p1,li_item,p2,li_cross,img_cross,br,img_check
+var list_ovals ,lists,cross,boxes ,li_cir,li_txt ,li_crs, check_count
 var itemCount = 0
-var rem,add;// holds remove or add states - 0 and 1 for each state
-var btn = document.querySelector('.add')
-var remove = document.querySelector('.draggable')
-var listItens = document.querySelectorAll('.draggable')
-var imageIcon // moon or sun icon
+var rem,add // holds remove or add states, 0 and 1 for state
+var btn = document.querySelector('.add');
+var remove = document.querySelector('.draggable');
+var listItens = document.querySelectorAll('.draggable');
+
+let itemsActive= 0
+var inp_chk, label, label_count
 
 //load images using promise
 const loadImg = function(img, url) {
@@ -46,9 +47,8 @@ loadImg(imgBgdl, 'images/bg-desktop-light.jpg').then((img) => console.log("imgBg
 loadImg(imgBgmd, 'images/bg-mobile-dark.jpg').then((img) => console.log("imgBgdm loaded!")).catch(() => console.warn("failed to load imgBgdm"));
 loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => console.log("imgBgdd loaded!")).catch(() => console.warn("failed to load imgBgdd"))
 
-//------------------------------------
 
-document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", function () {
 
   wrapper_stat = document.getElementById('container-status');
   wrapper_stat.style.marginBottom='10px'
@@ -78,9 +78,9 @@ document.addEventListener("DOMContentLoaded", function () {
   li_comp.setAttribute('id', 'tag_comp');
 
   //screen size for each background
-  if (window.innerWidth <= 576) {
+  if (window.innerWidth <= 375) {
     windowWidth = 'lesser';
-  }else if (window.innerWidth >= 576){
+  }else if (window.innerWidth >= 375){
      windowWidth = 'greater';
    }
    // circles for tick actions
@@ -104,16 +104,15 @@ document.addEventListener("DOMContentLoaded", function () {
     x.addListener(myFunction) // Attach listener function on state changes
     windowWidth = x
 
-    if (jsLoaded==true) {      
-      
+    if (jsLoaded==true) {
       bg_pic = document.getElementById("bg");
       bg_pic.style.backgroundSize='cover';
       bg_pic.style.backgroundRepeat='no-repeat';
 
             switch (modeIcon) {
               case 'sun':
-                //sun icon visible
-                  if (document.getElementById('p_counts')!=null) {
+              //sun icon visible
+                    if (document.getElementById('p_counts')!=null) {
                       document.getElementById('p_counts').style.color = darkMode
                       document.getElementById('tag_clear').style.color = darkMode
                       document.getElementById('box_stat').style.backgroundColor = lightMode
@@ -128,16 +127,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                     // set background for desktop and mobile dark mode
                     if (windowWidth=='lesser') {
-                      //document.getElementById('bg').style.backgroundImage="url(images/bg-mobile-light.jpg)"
                       document.getElementById('bg').style.backgroundImage=imgBgml.src
                       }else {
-                        document.getElementById('bg').style.backgroundImage=imgBgdl.src
-                        //document.getElementById('bg').style.backgroundImage="url(images/bg-desktop-light.jpg)"
-                      }
+                      document.getElementById('bg').style.backgroundImage=imgBgdl.src                      }
               break;
 
               case 'moon':
-                        //moon icon visible
+              //moon icon visible
               //background = dark, text = white
                     if (document.getElementById('p_counts')!=null) {
                       document.getElementById('p_counts').style.color = lightMode
@@ -153,19 +149,15 @@ document.addEventListener("DOMContentLoaded", function () {
                       document.getElementsByTagName('a')[2].style.color = lightMode;
                       document.getElementById('container-status').style.backgroundColor = darkMode;
                     }
-                if (windowWidth=='lesser') {
+                    if (windowWidth=='lesser') {
                       document.getElementById('bg').style.backgroundImage=imgBgmd.src
-                      //document.getElementById('bg').style.backgroundImage="url(images/bg-mobile-dark.jpg)"
                     }else {
-                    document.getElementById('bg').style.backgroundImage=imgBgdd
-                    //document.getElementById('bg').style.backgroundImage="url(images/bg-desktop-dark.jpg)"
+                      document.getElementById('bg').style.backgroundImage=imgBgdd.src
                     }
-
                       break;
               default:
               }
-
-    }
+            }
 
     // push attribution text down
     document.getElementById('bg').style.marginBottom = '350px'
@@ -184,19 +176,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
    });
 
-    // listening to click for search
+  // listening to click for search
      var search_icon = document.getElementById('div_oval');
      search_icon.addEventListener("click", event => {
-     mySearch();// call search function
-    event.preventDefault()
+       mySearch();// call search function
+       event.preventDefault()
       });
-
 
       //item count
       for (var i = 0; i < count; i++) {
         if (document.getElementsByClassName('boxes')[i].style.visibility=='hidden') {
           newCount = newCount+1;// get number of hidden items
-          console.log(newCount+ 'hidden items');
         }
       }
       var thisCount = count - newCount;
@@ -211,6 +201,7 @@ document.addEventListener("DOMContentLoaded", function () {
       getCompleted()
       clearCompleted()
 
+      //height for list
       // push contents down as list expands
       switch (thisCount) {
         case 1:
@@ -246,10 +237,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         default:
       }
-
  });
 
-function width_less(){
+  function width_less(){
   wrapper_stat.style.paddingBottom='40px'
   wrapper_stat.appendChild(p_counts);
   wrapper_stat.appendChild(tag_clear);
@@ -324,6 +314,7 @@ function width_less(){
   //if dark or light modeIcon
     if (modeIcon == 'sun') {
       //sun icon visible
+      //background = white, text = dark
         document.getElementById('bg').style.backgroundImage=imgBgml.src
         document.getElementById('box_stat').style.backgroundColor=lightMode
         document.getElementById('container-status').style.backgroundColor=lightMode
@@ -333,14 +324,14 @@ function width_less(){
       } else {
         document.getElementById('box_stat').style.backgroundColor=darkMode
         document.getElementById('container-status').style.backgroundColor=darkMode
-        document.getElementById('bg').style.backgroundImage="url(images/bg-mobile-dark.jpg)"
+        document.getElementById('bg').style.backgroundImage=imgBgmd.src
         document.getElementById('p_counts').style.color = lightMode
         document.getElementById('tag_clear').style.color = lightMode
       }
 }
 
-function width_greater(){
-    wrapper_stat.style.paddingBottom='15px'
+  function width_greater(){
+  wrapper_stat.style.paddingBottom='15px'
   li_count = document.createElement('li');
   li_clear = document.createElement('li');
   a_count = document.createElement('a');
@@ -429,16 +420,17 @@ function width_greater(){
       document.getElementById('tag_active').style.color = lightMode
       document.getElementById('tag_all').style.color = lightMode
    }
+
 }
 
-//click handler for changing from sun to moon
-function click_change(){
+  //click handler for changing from sun to moon
+  function click_change(){
   var icon_svg = document.getElementById('icon_click');
   var input_bg = document.getElementsByTagName('li')[0];
   let att = document.getElementById('att');
 
   //if sun modeIcon
-if (icon_svg.src =='https://affumbenjamin.github.io/todo_app/images/icon-sun.svg') {
+if (icon_svg.src =='file:///C:/Users/AFFUM/Desktop/todo-app-main/todo-app-main/images/icon-sun.svg') {
       modeIcon = 'sun';
       document.getElementsByTagName('p')[0].style.color = darkMode;
       // change body background to white
@@ -446,9 +438,9 @@ if (icon_svg.src =='https://affumbenjamin.github.io/todo_app/images/icon-sun.svg
       input_bg.style.backgroundColor= lightMode;
       //change text color
       att.style.color = darkMode;
+      document.getElementsByTagName('input')[0].style.color = darkMode
       document.getElementsByClassName('attribution')[0].children[0].style.color = darkMode
       document.getElementsByTagName('a')[0].style.color = darkMode
-      document.getElementsByTagName('input')[0].style.color = darkMode
       document.getElementsByTagName('a')[1].style.color = darkMode
       document.getElementsByTagName('a')[2].style.color = darkMode
       document.getElementById('container-status').style.backgroundColor = lightMode
@@ -470,26 +462,28 @@ if (icon_svg.src =='https://affumbenjamin.github.io/todo_app/images/icon-sun.svg
           for (var i = 0; i < document.getElementsByClassName('boxes').length; i++) {
               let bx = document.getElementsByClassName('boxes');
               bx[i].style.backgroundColor = lightMode;
-              bx[i].children[0].children[1].style.color = darkMode
+              bx[i].children[1].style.color = darkMode
             }
         }
 
-    if (document.getElementsByClassName('complete').length!=0) {
+      if (document.getElementsByClassName('complete').length!=0) {
               for (var i = 0; i < document.getElementsByClassName('complete').length; i++) {
                   let bc = document.getElementsByClassName('complete');
                       bc[i].style.backgroundColor = lightMode;
-                      bc[i].children[0].children[1].style.color = darkMode
+                      bc[i].children[1].style.color = darkMode
               }
         }
 
-      //change icon to moon
-      document.getElementById("icon_click").src='https://affumbenjamin.github.io/todo_app/images/icon-moon.svg'
 
-    }else if(icon_svg.src =='https://affumbenjamin.github.io/todo_app/images/icon-moon.svg'){
+      //change icon to moon
+      document.getElementById("icon_click").src="C:/Users/AFFUM/Desktop/todo-app-main/todo-app-main/images/icon-moon.svg";
+
+    }else if(icon_svg.src =='file:///C:/Users/AFFUM/Desktop/todo-app-main/todo-app-main/images/icon-moon.svg'){
       modeIcon = 'moon';
       // change body background to dark mode
       document.body.style.backgroundColor = darkMode;
       input_bg.style.backgroundColor = darkMode;
+      document.getElementsByTagName('input')[0].style.color = lightMode
       //change text color
       att.style.color=lightMode;
       document.getElementsByClassName('attribution')[0].children[0].style.color = lightMode
@@ -499,22 +493,23 @@ if (icon_svg.src =='https://affumbenjamin.github.io/todo_app/images/icon-sun.svg
       document.getElementById('container-status').style.backgroundColor = darkMode
       document.getElementsByTagName('p')[0].style.color=lightMode;
         //handle error in desktop view when this returns null
-     if (document.getElementById('p_counts')!=null) {
+      if (document.getElementById('p_counts')!=null) {
         document.getElementById('p_counts').style.color = lightMode
         document.getElementById('tag_clear').style.color = lightMode
         document.getElementById('box_stat').style.backgroundColor = lightMode
-      }      //background when Completed and ... become inline with rest of list
+      }
+      //background when Completed and ... become inline with rest of list
       if (document.getElementsByTagName('a')[3]!=null) {
         document.getElementsByTagName('a')[3].style.color = lightMode
         document.getElementsByTagName('a')[4].style.color = lightMode
       }
       // get all the boxes and set their background color as one
-      // but some class names change from boxes to complete  
+      // but some class names change from boxes to complete
       if (document.getElementsByClassName('boxes').length!=0) {
         for (var i = 0; i < document.getElementsByClassName('boxes').length; i++) {
               let bx = document.getElementsByClassName('boxes');
               bx[i].style.backgroundColor = darkMode;
-              bx[i].children[0].children[1].style.color = lightMode
+              bx[i].children[1].style.color = lightMode
             }
         }
 
@@ -522,26 +517,29 @@ if (icon_svg.src =='https://affumbenjamin.github.io/todo_app/images/icon-sun.svg
               for (var i = 0; i < document.getElementsByClassName('complete').length; i++) {
                   let bc = document.getElementsByClassName('complete');
                       bc[i].style.backgroundColor = darkMode
-                      bc[i].children[0].children[1].style.color = lightMode
+                      bc[i].children[1].style.color = lightMode
               }
         }
+
       //change icon to sun
-      document.getElementById("icon_click").src='https://affumbenjamin.github.io/todo_app/images/icon-sun.svg';
+      document.getElementById("icon_click").src="C:/Users/AFFUM/Desktop/todo-app-main/todo-app-main/images/icon-sun.svg";
   }
 changeBg(windowWidth,modeIcon);
 }
 
-//change backgroundImage when icon is clicked
-function changeBg(x,modeIcon) {
+  //change backgroundImage when icon is clicked
+  function changeBg(x,modeIcon) {
 
   if (x.matches) { // If media query matches
     //mobile background
           if (modeIcon=='sun') {// light mobile image
+            console.log(modeIcon + '-sun modeIcon mobile');
             document.getElementById('container-status').style.backgroundColor=lightMode
             document.getElementById('box_stat').style.backgroundColor=lightMode
-            document.getElementsByTagName('input')[0].style.color = darkMode;//fontcolor for form input            //att.style.color=lightMode;
+            document.getElementsByTagName('input')[0].style.color = darkMode;//fontcolor for form input
             document.getElementById('bg').style.backgroundImage=imgBgml.src
           }else if (modeIcon=='moon') {// dark mobile image
+            console.log(modeIcon + '-moon modeIcon mobile');
             document.getElementById('container-status').style.backgroundColor=darkMode
             document.getElementById('box_stat').style.backgroundColor=darkMode
             document.getElementsByTagName('input')[0].style.color = lightMode
@@ -549,25 +547,27 @@ function changeBg(x,modeIcon) {
           }
   } else {    //desktop background
           if (modeIcon=='sun') {
+            console.log(modeIcon + '-sun modeIcon desktop');
             att.style.color=darkMode;
+            document.getElementsByTagName('input')[0].style.color = darkMode
             document.getElementsByTagName('a')[5].style.color=darkMode
             document.getElementsByTagName('a')[6].style.color=darkMode
-            document.getElementsByTagName('input')[0].style.color = darkMode
             document.getElementById('container-status').style.backgroundColor=lightMode
             document.getElementById('bg').style.backgroundImage=imgBgdl.src
           }else if (modeIcon=='moon') {
             att.style.color=lightMode;
+            console.log(modeIcon+ '- modeIcon desktop');
+            document.getElementsByTagName('input')[0].style.color = lightMode
             document.getElementsByTagName('a')[5].style.color=lightMode
             document.getElementsByTagName('a')[6].style.color=lightMode
-            document.getElementsByTagName('input')[0].style.color = lightMode
             document.getElementById('container-status').style.backgroundColor=darkMode
             document.getElementById('bg').style.backgroundImage=imgBgdd.src
           }
         }
 }
 
-// set background for different screen width and modeIcon(sun or dark modeIcon)
-function myFunction(x,modeIcon) {
+  // set background for different screen width and modeIcon(sun or dark modeIcon)
+  function myFunction(x,modeIcon) {
 
   if (x.matches) { // If media query matches
     //check if elements already exist to avoid duplication
@@ -605,18 +605,18 @@ function myFunction(x,modeIcon) {
       document.getElementById('tag_comp').style.display='inline'
 
     //desktop background
-          if (modeIcon=='sun') {
-            console.log(modeIcon + ' modeIcon desktop');
-            document.getElementById('bg').style.backgroundImage=imgBgmd.src
-          }else if (modeIcon=='moon') {
-            console.log(modeIcon+ ' modeIcon desktop');
-            document.getElementById('bg').style.backgroundImage=imgBgml.src
-          }
-        }
+      if (modeIcon=='sun') {
+        console.log(modeIcon + ' modeIcon desktop');
+        document.getElementById('bg').style.backgroundImage=imgBgmd.src
+      }else if (modeIcon=='moon') {
+        console.log(modeIcon+ ' modeIcon desktop');
+        document.getElementById('bg').style.backgroundImage=imgBgml.src
+      }
+    }
 }
 
-// create new item
-function createNewDo(item){
+  // create new todo
+  function createNewDo(item){
 
     let wrapper = document.getElementsByClassName('container-new')[0];
     // create a new item inside a div(wrapper)
@@ -665,8 +665,8 @@ function createNewDo(item){
     box.setAttribute('draggable', true);
     box.setAttribute('class', 'boxes');
     img_cross.setAttribute('class', cross);
-    img_cross.setAttribute('src', "images/icon-cross.svg");
-       box.setAttribute('id', boxes);
+    img_cross.setAttribute('src', "C:/Users/AFFUM/Desktop/todo-app-main/todo-app-main/images/icon-cross.svg");
+    box.setAttribute('id', boxes);
 
     li_circle.setAttribute('class', li_cir);
     inp_chk.setAttribute('id', li_cir);//checkbox
@@ -678,9 +678,23 @@ function createNewDo(item){
     li_cross.setAttribute('class', li_crs);
     ul_todo.setAttribute('class','ul_td')
     img_check.setAttribute('class', check_count)
-    img_check.setAttribute('src', "images/icon-check.svg")
+    img_check.setAttribute('src', "C:/Users/AFFUM/Desktop/todo-app-main/todo-app-main/images/icon-check.svg")
 
-     // append children
+/*
+    // append children
+    wrapper.appendChild(box);
+    box.appendChild(ul_todo);
+      ul_todo.appendChild(li_circle);
+        li_circle.appendChild(p1);
+      ul_todo.appendChild(li_item);
+        li_item.appendChild(p2);
+      ul_todo.appendChild(li_cross);
+        li_cross.appendChild(img_cross);
+    p2.textContent = item; // the todo item
+    box.appendChild(br);
+*/
+
+    // append children
     wrapper.appendChild(box);
     box.appendChild(inp_chk);
     box.appendChild(label);
@@ -695,8 +709,30 @@ function createNewDo(item){
       console.log(checked+' checker')
       document.getElementsByClassName('boxes')[count].style.paddingLeft='0px'
     }
+/*
+      // circle shaped icon (MADE FROM A PARAGRAGH)
+        let circle = document.getElementsByClassName(list_ovals)[0];
+        circle.setAttribute('style','text-align: center')
+        circle.style.borderRadius = '50%'
+        circle.style.justifyContent = 'center';
+        circle.style.alignItems = 'center';
+        circle.style.height = '14px';
+        circle.style.width = '14px';
+        circle.style.border = '1px solid hsl(240deg 6.21% 65.29%)';
+        circle.style.marginLeft = '2px';
+        circle.style.marginBlockEnd = 0;
+        circle.style.marginBlockStart = 0;
+        circle.style.marginTop = '10px';
+        circle.style.display = 'inline-block';
 
-               let crss = document.getElementsByClassName(cross)[0];
+        let todos = document.getElementsByClassName(lists)[0];
+        todos.style.marginBlockEnd = 0;
+        todos.style.marginBlockStart = 0;
+        todos.style.marginTop = '10px';
+        todos.style.width='80%'
+        todos.style.display = 'inline-block';
+*/
+        let crss = document.getElementsByClassName(cross)[0];
         crss.style.marginBlockEnd = 0;
         crss.style.marginBlockStart = 0;
         crss.style.marginTop = '10px';
@@ -724,7 +760,7 @@ function createNewDo(item){
       count++;
       newCount = count
 
-if(modeIcon=='sun') {
+    if(modeIcon=='sun') {
       for (var i = 0; i <= box_len; i++) {
         if (bx[i]!=undefined) {
           bx[i].style.backgroundColor = lightMode;
@@ -769,6 +805,8 @@ if(modeIcon=='sun') {
   }
 
     updateCounter(rem,add,holder);
+
+    console.log(count +' count');
     addEventsDragAndDrop(box);
 
     //moving other contents down as list expands
@@ -826,21 +864,21 @@ if(modeIcon=='sun') {
 
   //add addEventListener to All
   function getAll(){
-let all_tag = document.getElementById('tag_all').children[0]
+    let all_tag = document.getElementById('tag_all').children[0]
 
-    all_tag.addEventListener("click",event=>{
+      all_tag.addEventListener("click",event=>{
       console.log(count+' items ALL test');
 
       //iterate through list and set all hidden items visible
       for (var i = 0; i < count; i++) {
         //if box is not removed
         if (document.getElementsByClassName('container-new')[0].children[i]!=undefined) {
+
           var vBox = document.getElementsByClassName('container-new')[0].children[i]//box-inline
-          let vUl = document.getElementsByClassName('container-new')[0].children[i].children[0]//ul-inline
-          let vCir = vUl.children[0]//cir
-          let vTxt = vUl.children[1]//txt
-          let vCrs = vUl.children[2]//crs
-          let vP = vTxt.children[0]//p-inline block
+
+          let vCir = vBox.children[0]//input
+          let vTxt = vBox.children[1]//label
+          let vCrs = vBox.children[2]//cross
 
           vBox.style.visibility = 'visible'
           vBox.style.display = ''
@@ -851,8 +889,6 @@ let all_tag = document.getElementById('tag_all').children[0]
           vBox.style.borderTopRightRadius = '2px'
           vBox.style.borderTopLeftRadius = '2px'
           vBox.style.borderBottom ='1px solid hsl(240deg 6.21% 65.29%)'
-
-          vUl.style.display = 'inline'
 
           //vCir.style.display = 'inline'
           vCir.setAttribute('style','text-align: center')
@@ -876,8 +912,6 @@ let all_tag = document.getElementById('tag_all').children[0]
           vCrs.style.marginBlockStart = 0;
           vCrs.style.marginTop = '5px';
           vCrs.style.display = 'inline-block';
-
-          //vP.style.display = 'inline-block'
         }
 
         list_ovals = i // circle icon
@@ -893,9 +927,8 @@ let all_tag = document.getElementById('tag_all').children[0]
         newItem.style.height='30px';
         newItem.style.borderTopRightRadius = '5px';
         newItem.style.borderTopLeftRadius = '5px';
-        document.getElementsByClassName(li_cir)[0].style.display='inline'
-        document.getElementsByClassName(li_txt)[0].style.display='inline'
-        document.getElementsByClassName(li_crs)[0].style.display='inline'
+        document.getElementsByClassName(list_ovals)[0].style.display='inline'
+        document.getElementsByClassName(cross)[0].style.display='inline'
       }
 
       //hide scrolls
@@ -935,6 +968,7 @@ let all_tag = document.getElementById('tag_all').children[0]
           for (var i = 0; i < lenC; i++) {
             document.getElementsByClassName('complete')[i].style.visibility = 'hidden'
             document.getElementsByClassName('complete')[i].style.display = 'none'
+            console.log(i);
           }
       }else {
         console.log('no active todos');
@@ -964,7 +998,7 @@ let all_tag = document.getElementById('tag_all').children[0]
 }
 
   function getCompleted(){
-let comp_tag = document.getElementById('tag_comp').children[0]
+  let comp_tag = document.getElementById('tag_comp').children[0]
   comp_tag.addEventListener("click",event=>{
     console.log(count+' all test');
 
@@ -1002,7 +1036,7 @@ let comp_tag = document.getElementById('tag_comp').children[0]
 
     event.preventDefault();
   });
-  }
+}
 
   function clearCompleted(){
     var clear_all;
@@ -1093,7 +1127,7 @@ let comp_tag = document.getElementById('tag_comp').children[0]
 }
 
   function removeItem(){
-   //add addEventListener to cross
+  //add addEventListener to cross
     var cross_num;
     let cross_var = document.getElementsByClassName(cross)[0];
 
@@ -1174,11 +1208,13 @@ let comp_tag = document.getElementById('tag_comp').children[0]
       }
 
     event.preventDefault();
-      });}
+      });
+}
 
   var holder = 0;//holds count or width
   function updateCounter(rem,add,holder){
-      //update item counting when width changes
+
+    //update item counting when width changes
   if ( rem == 1 && add == 0) {
         console.log(holder+' items after removal');
               if (windowWidth == 'greater') {
@@ -1193,6 +1229,7 @@ let comp_tag = document.getElementById('tag_comp').children[0]
         }else {
                 p_counts.textContent = (holder+' items left');
         }
+        console.log('Counter '+holder);
     }else if (add==0 && rem == 0) {
       //update item counting when width changes
             if (holder == 'greater') {
@@ -1209,13 +1246,35 @@ let comp_tag = document.getElementById('tag_comp').children[0]
                   }
             }
           }
+
   }
 
   // checks complete todos
   function createCheck(count,num){
-   var cnt = count;
+    var cnt = count;
     console.log(num+' console.log()');
-   var cc = num;// number attached to each cicle
+/*
+    if (document.getElementsByClassName(num)[0].style.visibility=='hidden') {
+      var cc = num;// number attached to each cicle
+      console.log('item '+cc +' checked');
+      var lc = document.getElementById('cir_'+cc)
+      //lc.style.backgroundColor='linear-gradient hsl(192, 100%, 67%)'
+      lc.appendChild(img_check)
+      img_check.setAttribute('style','text-align: center')
+      img_check.style.width='15px'
+      img_check.style.height='15px'
+      img_check.style.borderRadius = '40%'
+      img_check.style.paddingLeft = '2px';
+      img_check.style.border = '0.5px solid hsl(240deg 6.21% 65.29%)';
+      img_check.style.marginLeft = '2px';
+      img_check.style.marginBlockEnd = 0;
+      img_check.style.marginBlockStart = 0;
+      img_check.style.marginTop = '10px';
+      img_check.style.display = 'inline-block';
+
+      }
+*/
+      var cc = num;// number attached to each cicle
       console.log('cc >>> '+cc);
       var lc = document.getElementById('cir_'+cc)
 
@@ -1287,6 +1346,7 @@ let comp_tag = document.getElementById('tag_comp').children[0]
 
   function mySearch() {
     // Declare variables
+    console.log('searching');
     var input_search, filter, ul, cir_li, txt_li, crs_li, p, txtValue , itm;
     input_search = document.getElementById('todo_input');
     // get current text in search form and convert to UpperCase
@@ -1320,7 +1380,6 @@ let comp_tag = document.getElementById('tag_comp').children[0]
           // hide div container for other items
           let c2 = document.getElementsByClassName(ul_r)[i]
           let cls = c2.parentElement.attributes[2].nodeValue
-          console.log(cls);
           document.getElementById(cls).style.visibility = 'hidden'
           document.getElementById(cls).style.display = "none";
         }
