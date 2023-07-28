@@ -26,14 +26,6 @@ var remove = document.querySelector('.draggable');
 var listItens = document.querySelectorAll('.draggable');
 var imageIcon // moon or sun icon
 
-imageIcon = document.images[0];
-var downloadingIcon = new Image();
-downloadingIcon.onload = function(){
-imageIcon.src = this.src;
-};
-downloadingIcon.src = "images/icon-moon.svg";
-console.log('Icon downloaded')
-
 //----------------------------------
 const POKEMONS_BAD_URL = 'https://pokeapi.co/api/v2/pokemon-bad/';
 
