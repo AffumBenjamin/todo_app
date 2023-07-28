@@ -39,16 +39,42 @@ const imgBgdl = new Image();//light desktop background
 const imgBgmd = new Image();//dark mobile background
 const imgBgdd = new Image();//dark desktop background
 
-loadImg(imgSun, 'images/icon-sun.svg').then((img) => console.log("Icon sun loaded!"+imgSun[0])).catch(() => console.warn("img sun failed to load"));
-loadImg(imgMoon, 'images/icon-moon.svg').then((img) => console.log("Icon moon loaded!"+imgMoon)).catch(() => console.warn("img moon failed to load"))
+let imgSunLoaded = false
+let imgMoonLoaded = false
+let imgLightdLoaded = false
+let imgLightmLoaded = false
+let imgDarkdLoaded = false
+let imgDarkmLoaded = false
 
-loadImg(imgBgml, 'images/bg-mobile-light.jpg').then((img) => console.log("bglm loaded!")).catch(() => console.warn("failed to load imgBglm"));
-loadImg(imgBgdl, 'images/bg-desktop-light.jpg').then((img) => console.log("imgBglm loaded!")).catch(() => console.warn("failed to load imgBgld"))
-loadImg(imgBgmd, 'images/bg-mobile-dark.jpg').then((img) => console.log("imgBgdm loaded!")).catch(() => console.warn("failed to load imgBgdm"));
-loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => console.log("imgBgdd loaded!")).catch(() => console.warn("failed to load imgBgdd"))
 
+// load images
+loadImg(imgSun, 'images/icon-sun.svg').then(
+  (img) => imgSunLoaded = true;
+  console.log("Icon sun loaded!")).catch(() => console.warn("img sun failed to load"));
+
+loadImg(imgMoon, 'images/icon-moon.svg').then(
+  (img) => imgMoonLoaded = true;
+  console.log("Icon moon loaded!")).catch(() => console.warn("img moon failed to load"))
+
+loadImg(imgBgml, 'images/bg-mobile-light.jpg').then(
+  (img) =>imgLightmLoaded = true;
+  console.log("bglm loaded!")).catch(() => console.warn("failed to load imgBglm"));
+
+loadImg(imgBgdl, 'images/bg-desktop-light.jpg').then(
+  (img) => imgLightdLoaded = true;
+  console.log("imgBglm loaded!")).catch(() => console.warn("failed to load imgBgld"))
+
+loadImg(imgBgmd, 'images/bg-mobile-dark.jpg').then(
+  (img) => imgDarkmLoaded = true;
+   console.log("imgBgdm loaded!")).catch(() => console.warn("failed to load imgBgdm"));
+
+loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then(
+  (img) => imgDarkdLoaded = true;
+  console.log("imgBgdd loaded!")).catch(() => console.warn("failed to load imgBgdd"))
 
   document.addEventListener("DOMContentLoaded", function () {
+    var x = window.matchMedia("(max-width: 375px)")
+    windowWidth = x
 
   wrapper_stat = document.getElementById('container-status');
   wrapper_stat.style.marginBottom='10px'
@@ -99,10 +125,8 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => console.log("imgBgd
    jsLoaded = true;
 
     // for media query
-    var x = window.matchMedia("(max-width: 375px)")
     myFunction(x,modeIcon) // Call listener function at run time
     x.addListener(myFunction) // Attach listener function on state changes
-    windowWidth = x
 
     if (jsLoaded==true) {
       bg_pic = document.getElementById("bg");
@@ -125,12 +149,15 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => console.log("imgBgd
                       document.getElementsByTagName('a')[2].style.color = darkMode;
                       document.getElementById('container-status').style.backgroundColor = lightMode;
                     }
+
                     // set background for desktop and mobile dark mode
                     if (windowWidth=='lesser') {
                       console.log('here sun less');
                       document.getElementsByClassName('all')[0].style.backgroundImage=imgBgml.src
                       }else {
-                      document.getElementsByClassName('all')[0].style.backgroundImage=imgBgdl.src                      }
+                      document.getElementsByClassName('all')[0].style.backgroundImage=imgBgdl.src
+                    }
+
               break;
 
               case 'moon':
@@ -150,12 +177,14 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => console.log("imgBgd
                       document.getElementsByTagName('a')[2].style.color = lightMode;
                       document.getElementById('container-status').style.backgroundColor = darkMode;
                     }
+
                     if (windowWidth=='lesser') {
                       document.getElementsByClassName('all')[0].style.backgroundImage=imgBgmd.src
                     }else {
                       console.log('here moon greater');
                       document.getElementsByClassName('all')[0].style.backgroundImage=imgBgdd.src
                     }
+
                       break;
               default:
               }
@@ -164,6 +193,30 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => console.log("imgBgd
     // push attribution text down
     document.getElementById('bg').style.marginBottom = '350px'
     document.getElementsByClassName('container-new')[0].style.marginBottom = '5px'
+
+    // if last image is loaded
+    if (imgDarkdLoaded==true) {
+
+    switch (modeIcon) {
+        case 'sun':
+              if (windowWidth=='lesser') {
+                  console.log('here sun less');
+                  document.getElementsByClassName('all')[0].style.backgroundImage=imgBgml.src
+                }else {
+                  document.getElementsByClassName('all')[0].style.backgroundImage=imgBgdl.src
+                }
+              break;
+          case 'moon':
+                if (windowWidth=='lesser') {
+                  document.getElementsByClassName('all')[0].style.backgroundImage=imgBgmd.src
+                }else {
+                  console.log('here moon greater');
+                  document.getElementsByClassName('all')[0].style.backgroundImage=imgBgdd.src
+                }
+                  break;
+              default:
+          }
+    }
 
     // listening to inputs from form
     form = document.querySelector("form");
