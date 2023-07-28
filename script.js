@@ -27,26 +27,33 @@ var listItens = document.querySelectorAll('.draggable');
 var imageIcon // moon or sun icon
 
 //----------------------------------
-function getPromise(URL) {
+function getPromise(image_src) {
   let promise = new Promise(function (resolve, reject) {
-    let req = new XMLHttpRequest();
-    req.open("GET", URL);
-    req.onload = function () {
-      if (req.status == 200) {
-        resolve(req.response);
+    
+    var image = document.images[0];
+    var downloadingImage = new Image();
+    downloadingImage.onload = function(){
+    image.src = this.src;   
+    };
+    downloadingImage.src = image_src;
+       
+    image.onload = function () {
+      if (image.status == 200) {
+        resolve(image.response);
       } else {
         reject("There is an Error!");
       }
     };
-    req.send();
+    
+    image.send();
   });
   return promise;
 }
 
-const POKEMONS_BAD_URL = 'https://pokeapi.co/api/v2/pokemon-bad/';
+const image_src = 'images/icon-moon.svg';
 
 // This will reject as the URL is 404
-let promise = getPromise(POKEMONS_BAD_URL);
+let promise = getPromise(image_src);
 
 const consumer = () => {
     promise.then(
@@ -63,6 +70,8 @@ const consumer = () => {
 }
 
 consumer()
+
+
 //------------------------------------
 
 
