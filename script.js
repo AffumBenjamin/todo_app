@@ -29,6 +29,7 @@ return new Promise((resolve, reject) => {
     img.src = url;
     img.onload = () => resolve(img);
     img.onerror = () => reject(img);
+    console.log('loaded');
   });
 };
 
