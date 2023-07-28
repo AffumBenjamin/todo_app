@@ -26,51 +26,20 @@ var remove = document.querySelector('.draggable');
 var listItens = document.querySelectorAll('.draggable');
 var imageIcon // moon or sun icon
 
-//----------------------------------
-function getPromise(image_src) {
-  let promise = new Promise(function (resolve, reject) {
-    
-    var image = document.images[0];
-    var downloadingImage = new Image();
-    downloadingImage.onload = function(){
-    image.src = this.src;   
-    };
-    downloadingImage.src = image_src;
-       
-    image.onload = function () {
-      if (image.status == 200) {
-        resolve(image.response);
-      } else {
-        reject("There is an Error!");
-      }
-    };
-    
-    image.send();
+//---------------------------------
+const loadImg = function(img, url) {
+return new Promise((resolve, reject) => {
+    img.src = url;
+    img.onload = () => resolve(img);
+    img.onerror = () => reject(img);
   });
-  return promise;
-}
+};
 
-const image_src = 'images/icon-moon.svg';
+const img1 = new Image();
+const img2 = new Image();
 
-// This will reject as the URL is 404
-let promise = getPromise(image_src);
-
-const consumer = () => {
-    promise.then(
-        (result) => {
-            // The promise didn't resolve. Hence, it will
-            // not be executed.
-            console.log({result});
-        },
-        (error) => {
-            // A rejected prmise will execute this
-            console.log('We have encountered an Error!'); // Log an error
-        }
-    );
-}
-
-consumer()
-
+loadImg(img1, 'images/bg-desktop-dark.jpg').then((img) => console.log("image 1 loaded!")).catch(() => console.warn("img 1 failed to load"));
+loadImg(img2, 'images/bg-desktop-light.jpg').then((img) => console.log("image 2 loaded!")).catch(() => console.warn("img 2 failed to load"))
 
 //------------------------------------
 
