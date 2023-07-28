@@ -24,6 +24,7 @@ var rem,add;
 var btn = document.querySelector('.add');
 var remove = document.querySelector('.draggable');
 var listItens = document.querySelectorAll('.draggable');
+var imageIcon // moon or sun icon
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -82,6 +83,16 @@ document.addEventListener("DOMContentLoaded", function () {
     windowWidth = x
 
     if (jsLoaded==true) {
+      
+      imageIcon = document.images[0];
+      var downloadingIcon = new Image();
+      downloadingImage.onload = function(){
+      imageIcon.src = this.src;
+        };
+      downloadingIcon.src = "images/icon-moon.svg";
+      console.log('Icon downloaded')
+      
+      
       bg_pic = document.getElementById("bg");
       bg_pic.style.backgroundSize='cover';
       bg_pic.style.backgroundRepeat='no-repeat';
