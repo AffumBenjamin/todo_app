@@ -28,7 +28,7 @@ var imageIcon // moon or sun icon
 
 imageIcon = document.images[0];
 var downloadingIcon = new Image();
-downloadingImage.onload = function(){
+downloadingIcon.onload = function(){
 imageIcon.src = this.src;
 };
 downloadingIcon.src = "images/icon-moon.svg";
