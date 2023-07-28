@@ -46,6 +46,7 @@ let imgLightmLoaded = false
 let imgDarkdLoaded = false
 let imgDarkmLoaded = false
 
+
 // load images
 loadImg(imgSun, 'images/icon-sun.svg').then((img) => imgSunLoaded = true).catch(() => console.warn("img sun failed to load"));
 
@@ -59,9 +60,9 @@ loadImg(imgBgmd, 'images/bg-mobile-dark.jpg').then((img) => imgDarkmLoaded = tru
 
 loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => imgDarkdLoaded = true).catch(() => console.warn("failed to load imgBgdd"))
 
-document.addEventListener("DOMContentLoaded", function () {
-var x = window.matchMedia("(max-width: 375px)")
-windowWidth = x
+  document.addEventListener("DOMContentLoaded", function () {
+    var x = window.matchMedia("(max-width: 375px)")
+    windowWidth = x
 
   wrapper_stat = document.getElementById('container-status');
   wrapper_stat.style.marginBottom='10px'
