@@ -13,20 +13,16 @@ var div;// circle
 var bg_pic,num;
 var checked = 0
 let itemsActive= 0
-
 var input_container,s_count,clear,ull,all,act,comp,box_2;
-var box,ul_todo,li_circle,p1,li_item,p2,li_cross,img_cross,br,img_check
-var list_ovals ,lists,cross,boxes ,li_cir,li_txt ,li_crs, check_count
+var box,ul_todo,li_circle,p1,li_item,p2,li_cross,img_cross,br,img_check, list_ovals ,lists,cross,boxes ,li_cir,li_txt ,li_crs, check_count
 var itemCount = 0
-var rem,add;
-// holds remove or add states
-// 0 and 1 for each state
-var btn = document.querySelector('.add');
-var remove = document.querySelector('.draggable');
-var listItens = document.querySelectorAll('.draggable');
+var rem,add;// holds remove or add states - 0 and 1 for each state
+var btn = document.querySelector('.add')
+var remove = document.querySelector('.draggable')
+var listItens = document.querySelectorAll('.draggable')
 var imageIcon // moon or sun icon
 
-//---------------------------------
+//load images using promise
 const loadImg = function(img, url) {
 return new Promise((resolve, reject) => {
     img.src = url;
@@ -37,13 +33,20 @@ return new Promise((resolve, reject) => {
 
 const imgSun = new Image();
 const imgMoon = new Image();
+const imgBglm = new Image();//light mobile background
+const imgBgld = new Image();//light desktop background
+const imgBgdm = new Image();//dark mobile background
+const imgBgdd = new Image();//dark desktop background
 
 loadImg(imgSun, 'images/icon-sun.svg').then((img) => console.log("Icon sun loaded!"+imgSun)).catch(() => console.warn("img sun failed to load"));
 loadImg(imgMoon, 'images/icon-moon.svg').then((img) => console.log("Icon moon loaded!"+imgMoon)).catch(() => console.warn("img moon failed to load"))
 
+loadImg(imgBglm, 'images/bg-mobile-light').then((img) => console.log("bglm loaded!")).catch(() => console.warn("failed to load imgBglm"));
+loadImg(imgBgld, 'images/bg-desktop-light').then((img) => console.log("imgBglm loaded!")).catch(() => console.warn("failed to load imgBgld"))
+loadImg(imgBgdm, 'images/bg-mobile-dark').then((img) => console.log("imgBgdm loaded!")).catch(() => console.warn("failed to load imgBgdm"));
+loadImg(imgBgdd, 'images/bg-desktop-dark').then((img) => console.log("imgBgdd loaded!")).catch(() => console.warn("failed to load imgBgdd"))
+
 //------------------------------------
-
-
 
 document.addEventListener("DOMContentLoaded", function () {
 
