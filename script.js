@@ -34,6 +34,30 @@ imageIcon.src = this.src;
 downloadingIcon.src = "images/icon-moon.svg";
 console.log('Icon downloaded')
 
+//----------------------------------
+const POKEMONS_BAD_URL = 'https://pokeapi.co/api/v2/pokemon-bad/';
+
+// This will reject as the URL is 404
+let promise = getPromise(POKEMONS_BAD_URL);
+
+const consumer = () => {
+    promise.then(
+        (result) => {
+            // The promise didn't resolve. Hence, it will
+            // not be executed.
+            console.log({result});
+        },
+        (error) => {
+            // A rejected prmise will execute this
+            console.log('We have encountered an Error!'); // Log an error
+        }
+    );
+}
+
+consumer()
+//------------------------------------
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
 
