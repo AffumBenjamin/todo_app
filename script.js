@@ -430,7 +430,7 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => console.log("imgBgd
   let att = document.getElementById('att');
 
   //if sun modeIcon
-if (icon_svg.src =='https://affumbenjamin.github.io/todo_app/images/icon-sun.svg) {
+if (icon_svg.src =='https://affumbenjamin.github.io/todo_app/images/icon-sun.svg') {
       modeIcon = 'sun';
       document.getElementsByTagName('p')[0].style.color = darkMode;
       // change body background to white
