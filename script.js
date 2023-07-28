@@ -99,7 +99,7 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => console.log("imgBgd
    jsLoaded = true;
 
     // for media query
-    var x = window.matchMedia("(max-width: 576px)")
+    var x = window.matchMedia("(max-width: 375px)")
     myFunction(x,modeIcon) // Call listener function at run time
     x.addListener(myFunction) // Attach listener function on state changes
     windowWidth = x
@@ -127,9 +127,10 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => console.log("imgBgd
                     }
                     // set background for desktop and mobile dark mode
                     if (windowWidth=='lesser') {
-                      document.getElementById('bg').style.backgroundImage=imgBgml.src
+                      console.log('here sun less');
+                      document.getElementsByClassName('all')[0].style.backgroundImage=imgBgml.src
                       }else {
-                      document.getElementById('bg').style.backgroundImage=imgBgdl.src                      }
+                      document.getElementsByClassName('all')[0].style.backgroundImage=imgBgdl.src                      }
               break;
 
               case 'moon':
@@ -150,9 +151,10 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => console.log("imgBgd
                       document.getElementById('container-status').style.backgroundColor = darkMode;
                     }
                     if (windowWidth=='lesser') {
-                      document.getElementById('bg').style.backgroundImage=imgBgmd.src
+                      document.getElementsByClassName('all')[0].style.backgroundImage=imgBgmd.src
                     }else {
-                      document.getElementById('bg').style.backgroundImage=imgBgdd.src
+                      console.log('here moon greater');
+                      document.getElementsByClassName('all')[0].style.backgroundImage=imgBgdd.src
                     }
                       break;
               default:
@@ -194,7 +196,9 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => console.log("imgBgd
       //call updateCounter function here
       rem = 0;// 0 for no item removed
       add = 0;// 0 for no item added
-      holder = windowWidth;
+      holder = windowWidth
+
+
       updateCounter(rem,add,holder)
       getAll()
       getActive()
@@ -420,7 +424,6 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => console.log("imgBgd
       document.getElementById('tag_active').style.color = lightMode
       document.getElementById('tag_all').style.color = lightMode
    }
-
 }
 
   //click handler for changing from sun to moon
