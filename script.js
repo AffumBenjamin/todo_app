@@ -33,18 +33,18 @@ return new Promise((resolve, reject) => {
 
 const imgSun = new Image();
 const imgMoon = new Image();
-const imgBglm = new Image();//light mobile background
-const imgBgld = new Image();//light desktop background
-const imgBgdm = new Image();//dark mobile background
+const imgBgml = new Image();//light mobile background
+const imgBgdl = new Image();//light desktop background
+const imgBgmd = new Image();//dark mobile background
 const imgBgdd = new Image();//dark desktop background
 
 loadImg(imgSun, 'images/icon-sun.svg').then((img) => console.log("Icon sun loaded!"+imgSun[0])).catch(() => console.warn("img sun failed to load"));
 loadImg(imgMoon, 'images/icon-moon.svg').then((img) => console.log("Icon moon loaded!"+imgMoon)).catch(() => console.warn("img moon failed to load"))
 
-loadImg(imgBglm, 'images/bg-mobile-light').then((img) => console.log("bglm loaded!")).catch(() => console.warn("failed to load imgBglm"));
-loadImg(imgBgld, 'images/bg-desktop-light').then((img) => console.log("imgBglm loaded!")).catch(() => console.warn("failed to load imgBgld"))
-loadImg(imgBgdm, 'images/bg-mobile-dark').then((img) => console.log("imgBgdm loaded!")).catch(() => console.warn("failed to load imgBgdm"));
-loadImg(imgBgdd, 'images/bg-desktop-dark').then((img) => console.log("imgBgdd loaded!")).catch(() => console.warn("failed to load imgBgdd"))
+loadImg(imgBgml, 'images/bg-mobile-light.jpg').then((img) => console.log("bglm loaded!")).catch(() => console.warn("failed to load imgBglm"));
+loadImg(imgBgdl, 'images/bg-desktop-light.jpg').then((img) => console.log("imgBglm loaded!")).catch(() => console.warn("failed to load imgBgld"))
+loadImg(imgBgmd, 'images/bg-mobile-dark.jpg').then((img) => console.log("imgBgdm loaded!")).catch(() => console.warn("failed to load imgBgdm"));
+loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => console.log("imgBgdd loaded!")).catch(() => console.warn("failed to load imgBgdd"))
 
 //------------------------------------
 
