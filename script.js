@@ -46,35 +46,22 @@ let imgLightmLoaded = false
 let imgDarkdLoaded = false
 let imgDarkmLoaded = false
 
-
 // load images
-loadImg(imgSun, 'images/icon-sun.svg').then(
-  (img) => imgSunLoaded = true
-  console.log("Icon sun loaded!")).catch(() => console.warn("img sun failed to load"));
+loadImg(imgSun, 'images/icon-sun.svg').then((img) => imgSunLoaded = true).catch(() => console.warn("img sun failed to load"));
 
-loadImg(imgMoon, 'images/icon-moon.svg').then(
-  (img) => imgMoonLoaded = true
-  console.log("Icon moon loaded!")).catch(() => console.warn("img moon failed to load"))
+loadImg(imgMoon, 'images/icon-moon.svg').then((img) => imgMoonLoaded = true).catch(() => console.warn("img moon failed to load"))
 
-loadImg(imgBgml, 'images/bg-mobile-light.jpg').then(
-  (img) =>imgLightmLoaded = true
-  console.log("bglm loaded!")).catch(() => console.warn("failed to load imgBglm"));
+loadImg(imgBgml, 'images/bg-mobile-light.jpg').then((img) =>imgLightmLoaded = true).catch(() => console.warn("failed to load imgBglm"));
 
-loadImg(imgBgdl, 'images/bg-desktop-light.jpg').then(
-  (img) => imgLightdLoaded = true
-  console.log("imgBglm loaded!")).catch(() => console.warn("failed to load imgBgld"))
+loadImg(imgBgdl, 'images/bg-desktop-light.jpg').then((img) => imgLightdLoaded = true).catch(() => console.warn("failed to load imgBgld"))
 
-loadImg(imgBgmd, 'images/bg-mobile-dark.jpg').then(
-  (img) => imgDarkmLoaded = true
-   console.log("imgBgdm loaded!")).catch(() => console.warn("failed to load imgBgdm"));
+loadImg(imgBgmd, 'images/bg-mobile-dark.jpg').then((img) => imgDarkmLoaded = true).catch(() => console.warn("failed to load imgBgdm"));
 
-loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then(
-  (img) => imgDarkdLoaded = true
-  console.log("imgBgdd loaded!")).catch(() => console.warn("failed to load imgBgdd"))
+loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => imgDarkdLoaded = true).catch(() => console.warn("failed to load imgBgdd"))
 
-  document.addEventListener("DOMContentLoaded", function () {
-    var x = window.matchMedia("(max-width: 375px)")
-    windowWidth = x
+document.addEventListener("DOMContentLoaded", function () {
+var x = window.matchMedia("(max-width: 375px)")
+windowWidth = x
 
   wrapper_stat = document.getElementById('container-status');
   wrapper_stat.style.marginBottom='10px'
