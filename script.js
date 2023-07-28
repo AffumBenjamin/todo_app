@@ -38,8 +38,8 @@ return new Promise((resolve, reject) => {
 const img1 = new Image();
 const img2 = new Image();
 
-loadImg(img1, 'images/bg-desktop-dark.jpg').then((img) => console.log("image 1 loaded!")).catch(() => console.warn("img 1 failed to load"));
-loadImg(img2, 'images/bg-desktop-light.jpg').then((img) => console.log("image 2 loaded!")).catch(() => console.warn("img 2 failed to load"))
+loadImg(img1, 'images/icon-sun.svg').then((img) => console.log("Icon sun loaded!")).catch(() => console.warn("img sun failed to load"));
+loadImg(img2, 'images/icon-moon.svg').then((img) => console.log("Icon moon loaded!")).catch(() => console.warn("img moon failed to load"))
 
 //------------------------------------
 
