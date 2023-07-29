@@ -361,7 +361,7 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => imgDarkdLoaded = tr
     if (modeIcon == 'sun') {
       //sun icon visible
       //background = white, text = dark
-        document.getElementById('bg').style.backgroundImage=imgBgml.src
+        document.getElementById('bg').style.backgroundImage="url("+imgBgml.src+")"
         document.getElementById('box_stat').style.backgroundColor=lightMode
         document.getElementById('container-status').style.backgroundColor=lightMode
         //initialize text color of items left and clear completed to white(in dark modeIcon)
@@ -370,7 +370,7 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => imgDarkdLoaded = tr
       } else {
         document.getElementById('box_stat').style.backgroundColor=darkMode
         document.getElementById('container-status').style.backgroundColor=darkMode
-        document.getElementById('bg').style.backgroundImage=imgBgmd.src
+        document.getElementById('bg').style.backgroundImage="url("+imgBgmd.src+")"
         document.getElementById('p_counts').style.color = lightMode
         document.getElementById('tag_clear').style.color = lightMode
       }
@@ -453,14 +453,14 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => imgDarkdLoaded = tr
       //sun icon visible
       //background = white, text = dark
       document.getElementById('container-status').style.backgroundColor=lightMode
-      document.getElementById('bg').style.backgroundImage=imgBgdl.src
+      document.getElementById('bg').style.backgroundImage="url("+imgBgdl.src+")"
       document.getElementById('tag_count').style.color = darkMode
       document.getElementById('tag_comp').style.color = darkMode
       document.getElementById('tag_active').style.color = darkMode
       document.getElementById('tag_all').style.color = darkMode
     }else{
       document.getElementById('container-status').style.backgroundColor=darkMode
-      document.getElementById('bg').style.backgroundImage=imgBgdd.src
+      document.getElementById('bg').style.backgroundImage="url("+imgBgdd.src+")"
       document.getElementById('tag_count').style.color = lightMode
       document.getElementById('tag_comp').style.color = lightMode
       document.getElementById('tag_active').style.color = lightMode
@@ -578,16 +578,16 @@ function changeBg(x,modeIcon) {
         //mobile background
               if (modeIcon=='sun') {// light mobile image
                 console.log(modeIcon + '-sun modeIcon mobile');
-                document.getElementById('container-status').style.backgroundColor=lightMode// box for no items, clear completed 
+                document.getElementById('container-status').style.backgroundColor=lightMode// box for no items, clear completed
                 document.getElementById('box_stat').style.backgroundColor=lightMode // box for all active complete
                 document.getElementsByTagName('input')[0].style.color = darkMode;//fontcolor for form input
-                document.getElementById('bg').style.backgroundImage=imgBgml.src
+                document.getElementById('bg').style.backgroundImage="url("+imgBgml.src+")"
               }else if (modeIcon=='moon'){// dark mobile image
                 console.log(modeIcon + '-moon modeIcon mobile');
                 document.getElementById('container-status').style.backgroundColor=darkMode
                 document.getElementById('box_stat').style.backgroundColor=darkMode
                 document.getElementsByTagName('input')[0].style.color = lightMode
-                document.getElementById('bg').style.backgroundImage=imgBgmd.src
+                document.getElementById('bg').style.backgroundImage="url("+imgBgmd.src+")"
               }
       } else {    //desktop background
           if (modeIcon=='sun') {
@@ -597,7 +597,7 @@ function changeBg(x,modeIcon) {
             document.getElementsByTagName('a')[5].style.color=darkMode
             document.getElementsByTagName('a')[6].style.color=darkMode
             document.getElementById('container-status').style.backgroundColor=lightMode
-            document.getElementById('bg').style.backgroundImage=imgBgdl.src
+            document.getElementById('bg').style.backgroundImage="url("+imgBgdl.src+")"
           }else if (modeIcon=='moon') {
             att.style.color=lightMode;
             console.log(modeIcon+ '- modeIcon desktop');
@@ -605,7 +605,7 @@ function changeBg(x,modeIcon) {
             document.getElementsByTagName('a')[5].style.color=lightMode
             document.getElementsByTagName('a')[6].style.color=lightMode
             document.getElementById('container-status').style.backgroundColor=darkMode
-            document.getElementById('bg').style.backgroundImage=imgBgdd.src
+            document.getElementById('bg').style.backgroundImage="url("+imgBgdd.src+")"
           }
         }
 }
@@ -629,10 +629,10 @@ function changeBg(x,modeIcon) {
     //mobile background
           if (modeIcon=='sun') {
             // light mobile image
-            document.getElementById('bg').style.backgroundImage=imgBgml.src
+            document.getElementById('bg').style.backgroundImage="url("+imgBgml.src+")"
           }else if (modeIcon=='moon') {
             // dark mobile image
-            document.getElementById('bg').style.backgroundImage=imgBgmd.src
+            document.getElementById('bg').style.backgroundImage="url("+imgBgmd.src+")"
           }
 
   } else {
@@ -651,10 +651,10 @@ function changeBg(x,modeIcon) {
     //desktop background
       if (modeIcon=='sun') {
         console.log(modeIcon + ' modeIcon desktop');
-        document.getElementById('bg').style.backgroundImage=imgBgmd.src
+        document.getElementById('bg').style.backgroundImage="url("+imgBgmd.src+")"
       }else if (modeIcon=='moon') {
         console.log(modeIcon+ ' modeIcon desktop');
-        document.getElementById('bg').style.backgroundImage=imgBgml.src
+        document.getElementById('bg').style.backgroundImage="url("+imgBgml.src+")"
       }
     }
 }
