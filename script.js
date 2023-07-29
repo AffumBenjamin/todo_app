@@ -131,7 +131,7 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => imgDarkdLoaded = tr
                       document.getElementById('box_stat').style.backgroundColor = lightMode
                       document.getElementById('container-status').style.backgroundColor = lightMode
                       console.log('here sun less');
-                      document.getElementsByClassName('all')[0].style.backgroundImage=imgBgml.src
+                      document.getElementsByClassName('all')[0].style.backgroundImage="url("+imgBgml.src+")"
 
                     }
                     //background when Completed and ... become inline with rest of list
@@ -139,7 +139,7 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => imgDarkdLoaded = tr
                       document.getElementsByTagName('a')[0].style.color = darkMode;
                       document.getElementsByTagName('a')[1].style.color = darkMode;
                       document.getElementsByTagName('a')[2].style.color = darkMode;
-                      document.getElementsByClassName('all')[0].style.backgroundImage=imgBgdl.src
+                      document.getElementsByClassName('all')[0].style.backgroundImage= "url("+imgBgdl.src+")"
                       document.getElementById('container-status').style.backgroundColor = lightMode;
                     }
 
@@ -152,7 +152,7 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => imgDarkdLoaded = tr
                       document.getElementById('p_counts').style.color = lightMode
                       document.getElementById('tag_clear').style.color = lightMode
                       document.getElementById('box_stat').style.backgroundColor = darkMode
-                      document.getElementsByClassName('all')[0].style.backgroundImage=imgBgmd.src// dark mobile
+                      document.getElementsByClassName('all')[0].style.backgroundImage= "url("+imgBgmd.src+")" // dark mobile
                       document.getElementById('container-status').style.backgroundColor = darkMode
                   }
 
@@ -162,7 +162,7 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => imgDarkdLoaded = tr
                       document.getElementsByTagName('a')[1].style.color = lightMode;
                       document.getElementsByTagName('a')[2].style.color = lightMode;
                       console.log('here moon greater');
-                      document.getElementsByClassName('all')[0].style.backgroundImage=imgBgdd.src// dark desktop
+                      document.getElementsByClassName('all')[0].style.backgroundImage= "url("+imgBgdd.src+")" // dark desktop
                       document.getElementById('container-status').style.backgroundColor = darkMode;
                     }
 
@@ -182,17 +182,17 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => imgDarkdLoaded = tr
         case 'sun':
               if (windowWidth=='lesser') {
                   console.log('here sun less');
-                  document.getElementsByClassName('all')[0].style.backgroundImage=imgBgml.src
+                  document.getElementsByClassName('all')[0].style.backgroundImage="url("+imgBgml.src+")"
                 }else {
-                  document.getElementsByClassName('all')[0].style.backgroundImage=imgBgdl.src
+                  document.getElementsByClassName('all')[0].style.backgroundImage= "url("+imgBgdl.src+")"
                 }
               break;
           case 'moon':
                 if (windowWidth=='lesser') {
-                  document.getElementsByClassName('all')[0].style.backgroundImage=imgBgmd.src
+                  document.getElementsByClassName('all')[0].style.backgroundImage= "url("+imgBgmd.src+")"
                 }else {
                   console.log('moon svg, greater than 375px');
-                  document.getElementsByClassName('all')[0].style.backgroundImage=imgBgdd.src
+                  document.getElementsByClassName('all')[0].style.backgroundImage= "url("+imgBgdd.src+")"
                 }
                   break;
               default:
