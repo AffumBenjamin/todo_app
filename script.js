@@ -583,9 +583,9 @@ function changeBg(x,modeIcon) {
                 document.getElementsByTagName('input')[0].style.color = darkMode;//fontcolor for form input
                 document.getElementById('bg').style.backgroundImage="url("+imgBgml.src+")"
               }else if (modeIcon=='moon'){// dark mobile image
-                console.log(modeIcon + '-moon modeIcon mobile');
                 document.getElementById('container-status').style.backgroundColor=darkMode
-                document.getElementById('box_stat').style.backgroundColor='#25273c'
+                document.getElementById('box_stat').style.backgroundColor=darkMode
+                console.log(modeIcon + '- moon modeIcon fix me');
                 document.getElementsByTagName('input')[0].style.color = lightMode
                 document.getElementById('bg').style.backgroundImage="url("+imgBgmd.src+")"
               }
