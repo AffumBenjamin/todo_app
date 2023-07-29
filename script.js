@@ -125,14 +125,14 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => imgDarkdLoaded = tr
             switch (modeIcon) {
               case 'sun':
               //sun icon visible
-                    if (document.getElementById('p_counts')!=null) {
+            if (document.getElementById('p_counts')!=null) {
                       document.getElementById('p_counts').style.color = darkMode
                       document.getElementById('tag_clear').style.color = darkMode
                       document.getElementById('box_stat').style.backgroundColor = lightMode
                       document.getElementById('container-status').style.backgroundColor = lightMode
                     }
                     //background when Completed and ... become inline with rest of list
-                    if ((document.getElementsByTagName('a')[0])!=null) {
+              if ((document.getElementsByTagName('a')[0])!=null) {
                       document.getElementsByTagName('a')[0].style.color = darkMode;
                       document.getElementsByTagName('a')[1].style.color = darkMode;
                       document.getElementsByTagName('a')[2].style.color = darkMode;
@@ -140,7 +140,7 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => imgDarkdLoaded = tr
                     }
 
                     // set background for desktop and mobile dark mode
-                    if (windowWidth=='lesser') {
+             if (windowWidth=='lesser') {
                       console.log('here sun less');
                       document.getElementsByClassName('all')[0].style.backgroundImage=imgBgml.src
                       }else {
@@ -152,15 +152,15 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => imgDarkdLoaded = tr
               case 'moon':
               //moon icon visible
               //background = dark, text = white
-                    if (document.getElementById('p_counts')!=null) {
+             if (document.getElementById('p_counts')!=null) {
                       document.getElementById('p_counts').style.color = lightMode
                       document.getElementById('tag_clear').style.color = lightMode
                       document.getElementById('box_stat').style.backgroundColor = darkMode
                       document.getElementById('container-status').style.backgroundColor = darkMode
-                    }
+                  }
 
                     //background when Completed and ... become inline with rest of list
-                    if ((document.getElementsByTagName('a')[0])!=null) {
+               if ((document.getElementsByTagName('a')[0])!=null) {
                       document.getElementsByTagName('a')[0].style.color = lightMode;
                       document.getElementsByTagName('a')[1].style.color = lightMode;
                       document.getElementsByTagName('a')[2].style.color = lightMode;
@@ -199,7 +199,7 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => imgDarkdLoaded = tr
                 if (windowWidth=='lesser') {
                   document.getElementsByClassName('all')[0].style.backgroundImage=imgBgmd.src
                 }else {
-                  console.log('here moon greater');
+                  console.log('moon svg, greater than 375px');
                   document.getElementsByClassName('all')[0].style.backgroundImage=imgBgdd.src
                 }
                   break;
@@ -492,7 +492,7 @@ if (icon_svg.src =='https://affumbenjamin.github.io/todo_app/images/icon-sun.svg
 
       // these are not shown for desktop view so may return null
       if (document.getElementById('p_counts')!=null) {
-        document.getElementById('box_stat').style.backgroundColor = lightMode
+        document.getElementById('box_stat').style.backgroundColor = darkMode
         document.getElementById('p_counts').style.color = darkMode
         document.getElementById('tag_clear').style.color = darkMode
       }
@@ -537,7 +537,8 @@ if (icon_svg.src =='https://affumbenjamin.github.io/todo_app/images/icon-sun.svg
       document.getElementsByTagName('a')[2].style.color = lightMode
       document.getElementById('container-status').style.backgroundColor = darkMode
       document.getElementsByTagName('p')[0].style.color=lightMode;
-        //handle error in desktop view when this returns null
+
+    //handle error in desktop view when this returns null
       if (document.getElementById('p_counts')!=null) {
         document.getElementById('p_counts').style.color = lightMode
         document.getElementById('tag_clear').style.color = lightMode
