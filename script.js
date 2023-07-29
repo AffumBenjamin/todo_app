@@ -589,9 +589,8 @@ function changeBg(x,modeIcon) {
                 document.getElementsByTagName('input')[0].style.color = lightMode
                 document.getElementById('bg').style.backgroundImage="url("+imgBgmd.src+")"
               }
-      } else{
-          //desktop background
-          
+      } else if (windowWidth>=375px) {
+            //desktop background
           if (modeIcon=='sun') {
             console.log(modeIcon + '-sun modeIcon desktop');
             att.style.color=darkMode;
@@ -609,7 +608,6 @@ function changeBg(x,modeIcon) {
             document.getElementById('container-status').style.backgroundColor=darkMode
             document.getElementById('bg').style.backgroundImage="url("+imgBgdd.src+")"
           }
-          
         }
 }
 
@@ -629,15 +627,6 @@ function changeBg(x,modeIcon) {
     document.getElementById('tag_active').style.display='inline'
     document.getElementById('tag_comp').style.display='inline'
 
-    //mobile background
-          if (modeIcon=='sun') {
-            // light mobile image
-            document.getElementById('bg').style.backgroundImage="url("+imgBgml.src+")"
-          }else if (modeIcon=='moon') {
-            // dark mobile image
-            document.getElementById('bg').style.backgroundImage="url("+imgBgmd.src+")"
-          }
-
   } else {
       if (document.getElementById('box_stat')!=null) {
         document.getElementById('box_stat').remove()
@@ -651,14 +640,6 @@ function changeBg(x,modeIcon) {
       document.getElementById('tag_active').style.display='inline'
       document.getElementById('tag_comp').style.display='inline'
 
-    //desktop background
-      if (modeIcon=='sun') {
-        console.log(modeIcon + ' modeIcon desktop');
-        document.getElementById('bg').style.backgroundImage="url("+imgBgmd.src+")"
-      }else if (modeIcon=='moon') {
-        console.log(modeIcon+ ' modeIcon desktop');
-        document.getElementById('bg').style.backgroundImage="url("+imgBgml.src+")"
-      }
     }
 }
 
