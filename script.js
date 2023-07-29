@@ -125,26 +125,22 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => imgDarkdLoaded = tr
             switch (modeIcon) {
               case 'sun':
               //sun icon visible
-            if (document.getElementById('p_counts')!=null) {
+            if (document.getElementById('p_counts')!=null) {// mobile view
                       document.getElementById('p_counts').style.color = darkMode
                       document.getElementById('tag_clear').style.color = darkMode
                       document.getElementById('box_stat').style.backgroundColor = lightMode
                       document.getElementById('container-status').style.backgroundColor = lightMode
+                      console.log('here sun less');
+                      document.getElementsByClassName('all')[0].style.backgroundImage=imgBgml.src
+
                     }
                     //background when Completed and ... become inline with rest of list
-              if ((document.getElementsByTagName('a')[0])!=null) {
+              if ((document.getElementsByTagName('a')[0])!=null) { //desktop view
                       document.getElementsByTagName('a')[0].style.color = darkMode;
                       document.getElementsByTagName('a')[1].style.color = darkMode;
                       document.getElementsByTagName('a')[2].style.color = darkMode;
-                      document.getElementById('container-status').style.backgroundColor = lightMode;
-                    }
-
-                    // set background for desktop and mobile dark mode
-             if (windowWidth=='lesser') {
-                      console.log('here sun less');
-                      document.getElementsByClassName('all')[0].style.backgroundImage=imgBgml.src
-                      }else {
                       document.getElementsByClassName('all')[0].style.backgroundImage=imgBgdl.src
+                      document.getElementById('container-status').style.backgroundColor = lightMode;
                     }
 
               break;
@@ -156,6 +152,7 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => imgDarkdLoaded = tr
                       document.getElementById('p_counts').style.color = lightMode
                       document.getElementById('tag_clear').style.color = lightMode
                       document.getElementById('box_stat').style.backgroundColor = darkMode
+                      document.getElementsByClassName('all')[0].style.backgroundImage=imgBgmd.src// dark mobile
                       document.getElementById('container-status').style.backgroundColor = darkMode
                   }
 
@@ -164,14 +161,9 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => imgDarkdLoaded = tr
                       document.getElementsByTagName('a')[0].style.color = lightMode;
                       document.getElementsByTagName('a')[1].style.color = lightMode;
                       document.getElementsByTagName('a')[2].style.color = lightMode;
-                      document.getElementById('container-status').style.backgroundColor = darkMode;
-                    }
-
-                    if (windowWidth=='lesser') {
-                      document.getElementsByClassName('all')[0].style.backgroundImage=imgBgmd.src
-                    }else {
                       console.log('here moon greater');
-                      document.getElementsByClassName('all')[0].style.backgroundImage=imgBgdd.src
+                      document.getElementsByClassName('all')[0].style.backgroundImage=imgBgdd.src// dark desktop
+                      document.getElementById('container-status').style.backgroundColor = darkMode;
                     }
 
                       break;
@@ -182,30 +174,6 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => imgDarkdLoaded = tr
     // push attribution text down
     document.getElementById('bg').style.marginBottom = '350px'
     document.getElementsByClassName('container-new')[0].style.marginBottom = '5px'
-
-    // if last image is loaded
-    if (imgDarkdLoaded==true) {
-
-    switch (modeIcon) {
-        case 'sun':
-              if (windowWidth=='lesser') {
-                  console.log('here sun less');
-                  document.getElementsByClassName('all')[0].style.backgroundImage=imgBgml.src
-                }else {
-                  document.getElementsByClassName('all')[0].style.backgroundImage=imgBgdl.src
-                }
-              break;
-          case 'moon':
-                if (windowWidth=='lesser') {
-                  document.getElementsByClassName('all')[0].style.backgroundImage=imgBgmd.src
-                }else {
-                  console.log('moon svg, greater than 375px');
-                  document.getElementsByClassName('all')[0].style.backgroundImage=imgBgdd.src
-                }
-                  break;
-              default:
-          }
-    }
 
     // listening to inputs from form
     form = document.querySelector("form");
@@ -239,7 +207,6 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => imgDarkdLoaded = tr
       rem = 0;// 0 for no item removed
       add = 0;// 0 for no item added
       holder = windowWidth
-
 
       updateCounter(rem,add,holder)
       getAll()
@@ -472,7 +439,7 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => imgDarkdLoaded = tr
   function click_change(){
   var icon_svg = document.getElementById('icon_click');
   var input_bg = document.getElementsByTagName('li')[0];
-  let att = document.getElementById('att');
+  let att = document.getElementById('att'); //attribution
 
   //if sun modeIcon
 if (icon_svg.src =='https://affumbenjamin.github.io/todo_app/images/icon-sun.svg') {
@@ -492,7 +459,7 @@ if (icon_svg.src =='https://affumbenjamin.github.io/todo_app/images/icon-sun.svg
 
       // these are not shown for desktop view so may return null
       if (document.getElementById('p_counts')!=null) {
-        document.getElementById('box_stat').style.backgroundColor = darkMode
+        document.getElementById('box_stat').style.backgroundColor = lightMode
         document.getElementById('p_counts').style.color = darkMode
         document.getElementById('tag_clear').style.color = darkMode
       }
@@ -542,7 +509,7 @@ if (icon_svg.src =='https://affumbenjamin.github.io/todo_app/images/icon-sun.svg
       if (document.getElementById('p_counts')!=null) {
         document.getElementById('p_counts').style.color = lightMode
         document.getElementById('tag_clear').style.color = lightMode
-        document.getElementById('box_stat').style.backgroundColor = lightMode
+        document.getElementById('box_stat').style.backgroundColor = darkMode
       }
       //background when Completed and ... become inline with rest of list
       if (document.getElementsByTagName('a')[3]!=null) {
@@ -580,12 +547,12 @@ function changeBg(x,modeIcon) {
               if (modeIcon=='sun') {// light mobile image
                 console.log(modeIcon + '-sun modeIcon mobile');
                 document.getElementById('container-status').style.backgroundColor=lightMode// box for no items, clear completed
-                document.getElementById('box_stat').style.backgroundColor = darkMode // box for all active complete
+                document.getElementById('box_stat').style.backgroundColor = lightMode // box for all active complete
                 document.getElementsByTagName('input')[0].style.color = darkMode;//fontcolor for form input
                 document.getElementById('bg').style.backgroundImage="url("+imgBgml.src+")"
               }else if (modeIcon=='moon'){// dark mobile image
                 document.getElementById('container-status').style.backgroundColor=darkMode
-                document.getElementById('box_stat').style.backgroundColor=darkMode
+                document.getElementById('box_stat').style.backgroundColor=lightMode
                 console.log(modeIcon + '- moon modeIcon fix me');
                 document.getElementsByTagName('input')[0].style.color = lightMode
                 document.getElementById('bg').style.backgroundImage="url("+imgBgmd.src+")"
