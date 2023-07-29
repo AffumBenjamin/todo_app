@@ -175,6 +175,31 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => imgDarkdLoaded = tr
     document.getElementById('bg').style.marginBottom = '350px'
     document.getElementsByClassName('container-new')[0].style.marginBottom = '5px'
 
+        // if last image is loaded
+    if (imgDarkdLoaded==true) {
+
+    switch (modeIcon) {
+        case 'sun':
+              if (windowWidth=='lesser') {
+                  console.log('here sun less');
+                  document.getElementsByClassName('all')[0].style.backgroundImage=imgBgml.src
+                }else {
+                  document.getElementsByClassName('all')[0].style.backgroundImage=imgBgdl.src
+                }
+              break;
+          case 'moon':
+                if (windowWidth=='lesser') {
+                  document.getElementsByClassName('all')[0].style.backgroundImage=imgBgmd.src
+                }else {
+                  console.log('moon svg, greater than 375px');
+                  document.getElementsByClassName('all')[0].style.backgroundImage=imgBgdd.src
+                }
+                  break;
+              default:
+          }
+    }
+
+      
     // listening to inputs from form
     form = document.querySelector("form");
     form.addEventListener("submit", event => {
