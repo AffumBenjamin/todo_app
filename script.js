@@ -582,7 +582,7 @@ function changeBg(x,modeIcon) {
                 document.getElementById('box_stat').style.backgroundColor=lightMode // box for all active complete
                 document.getElementsByTagName('input')[0].style.color = darkMode;//fontcolor for form input
                 document.getElementById('bg').style.backgroundImage=imgBgml.src
-              }else{// dark mobile image
+              }else if (modeIcon=='moon'){// dark mobile image
                 console.log(modeIcon + '-moon modeIcon mobile');
                 document.getElementById('container-status').style.backgroundColor=darkMode
                 document.getElementById('box_stat').style.backgroundColor=darkMode
