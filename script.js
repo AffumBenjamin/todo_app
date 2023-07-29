@@ -62,7 +62,7 @@ loadImg(imgBgmd, 'images/bg-mobile-dark.jpg').then((img) => imgDarkmLoaded = tru
 loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => imgDarkdLoaded = true).catch(() => console.warn("failed to load imgBgdd"))
 
   document.addEventListener("DOMContentLoaded", function () {
-    var x = window.matchMedia("(max-width: 375px)")
+    var x = window.matchMedia("(max-width: 375)")
     windowWidth = x
 
   wrapper_stat = document.getElementById('container-status');
@@ -582,7 +582,7 @@ function changeBg(x,modeIcon) {
                 document.getElementById('box_stat').style.backgroundColor=darkMode
                 document.getElementsByTagName('input')[0].style.color = darkMode;//fontcolor for form input
                 document.getElementById('bg').style.backgroundImage=imgBgml.src
-              }else if (modeIcon=='moon') {// dark mobile image
+              }else{// dark mobile image
                 console.log(modeIcon + '-moon modeIcon mobile');
                 document.getElementById('container-status').style.backgroundColor=darkMode
                 document.getElementById('box_stat').style.backgroundColor=lightMode
