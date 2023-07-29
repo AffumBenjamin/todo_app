@@ -589,7 +589,7 @@ function changeBg(x,modeIcon) {
                 document.getElementsByTagName('input')[0].style.color = lightMode
                 document.getElementById('bg').style.backgroundImage="url("+imgBgmd.src+")"
               }
-      } else {    //desktop background
+      } else if (windowWidth>=375px) {    //desktop background
           if (modeIcon=='sun') {
             console.log(modeIcon + '-sun modeIcon desktop');
             att.style.color=darkMode;
