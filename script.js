@@ -573,24 +573,23 @@ changeBg(windowWidth,modeIcon);
 }
 
   //change backgroundImage when icon is clicked
-  function changeBg(x,modeIcon) {
-
-  if (x.matches) { // If media query matches
-    //mobile background
-          if (modeIcon=='sun') {// light mobile image
-            console.log(modeIcon + '-sun modeIcon mobile');
-            document.getElementById('container-status').style.backgroundColor=lightMode
-            document.getElementById('box_stat').style.backgroundColor=lightMode
-            document.getElementsByTagName('input')[0].style.color = darkMode;//fontcolor for form input
-            document.getElementById('bg').style.backgroundImage=imgBgml.src
-          }else if (modeIcon=='moon') {// dark mobile image
-            console.log(modeIcon + '-moon modeIcon mobile');
-            document.getElementById('container-status').style.backgroundColor=darkMode
-            document.getElementById('box_stat').style.backgroundColor=darkMode
-            document.getElementsByTagName('input')[0].style.color = lightMode
-            document.getElementById('bg').style.backgroundImage=imgBgmd.src
-          }
-  } else {    //desktop background
+function changeBg(x,modeIcon) {
+      if (x.matches) { // If media query matches
+        //mobile background
+              if (modeIcon=='sun') {// light mobile image
+                console.log(modeIcon + '-sun modeIcon mobile');
+                document.getElementById('container-status').style.backgroundColor=lightMode
+                document.getElementById('box_stat').style.backgroundColor=darkMode
+                document.getElementsByTagName('input')[0].style.color = darkMode;//fontcolor for form input
+                document.getElementById('bg').style.backgroundImage=imgBgml.src
+              }else if (modeIcon=='moon') {// dark mobile image
+                console.log(modeIcon + '-moon modeIcon mobile');
+                document.getElementById('container-status').style.backgroundColor=darkMode
+                document.getElementById('box_stat').style.backgroundColor=lightMode
+                document.getElementsByTagName('input')[0].style.color = lightMode
+                document.getElementById('bg').style.backgroundImage=imgBgmd.src
+              }
+      } else {    //desktop background
           if (modeIcon=='sun') {
             console.log(modeIcon + '-sun modeIcon desktop');
             att.style.color=darkMode;
