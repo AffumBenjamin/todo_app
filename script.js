@@ -578,14 +578,14 @@ function changeBg(x,modeIcon) {
         //mobile background
               if (modeIcon=='sun') {// light mobile image
                 console.log(modeIcon + '-sun modeIcon mobile');
-                document.getElementById('container-status').style.backgroundColor=lightMode
-                document.getElementById('box_stat').style.backgroundColor=darkMode
+                document.getElementById('container-status').style.backgroundColor=lightMode// box for no items, clear completed 
+                document.getElementById('box_stat').style.backgroundColor=lightMode // box for all active complete
                 document.getElementsByTagName('input')[0].style.color = darkMode;//fontcolor for form input
                 document.getElementById('bg').style.backgroundImage=imgBgml.src
               }else{// dark mobile image
                 console.log(modeIcon + '-moon modeIcon mobile');
                 document.getElementById('container-status').style.backgroundColor=darkMode
-                document.getElementById('box_stat').style.backgroundColor=lightMode
+                document.getElementById('box_stat').style.backgroundColor=darkMode
                 document.getElementsByTagName('input')[0].style.color = lightMode
                 document.getElementById('bg').style.backgroundImage=imgBgmd.src
               }
