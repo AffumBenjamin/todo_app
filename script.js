@@ -589,7 +589,9 @@ function changeBg(x,modeIcon) {
                 document.getElementsByTagName('input')[0].style.color = lightMode
                 document.getElementById('bg').style.backgroundImage="url("+imgBgmd.src+")"
               }
-      } else if (windowWidth>=375px) {    //desktop background
+      } else if(x>=375){
+          //desktop background
+          
           if (modeIcon=='sun') {
             console.log(modeIcon + '-sun modeIcon desktop');
             att.style.color=darkMode;
@@ -607,6 +609,7 @@ function changeBg(x,modeIcon) {
             document.getElementById('container-status').style.backgroundColor=darkMode
             document.getElementById('bg').style.backgroundImage="url("+imgBgdd.src+")"
           }
+          
         }
 }
 
