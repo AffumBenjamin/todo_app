@@ -589,7 +589,7 @@ function changeBg(x,modeIcon) {
                 document.getElementsByTagName('input')[0].style.color = lightMode
                 document.getElementById('bg').style.backgroundImage="url("+imgBgmd.src+")"
               }
-      } else if(x>=375){
+      } else{
           //desktop background
           
           if (modeIcon=='sun') {
