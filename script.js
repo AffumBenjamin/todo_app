@@ -579,13 +579,13 @@ function changeBg(x,modeIcon) {
               if (modeIcon=='sun') {// light mobile image
                 console.log(modeIcon + '-sun modeIcon mobile');
                 document.getElementById('container-status').style.backgroundColor=lightMode// box for no items, clear completed
-                document.getElementById('box_stat').style.backgroundColor=lightMode // box for all active complete
+                document.getElementById('box_stat').style.backgroundColor = darkMode // box for all active complete
                 document.getElementsByTagName('input')[0].style.color = darkMode;//fontcolor for form input
                 document.getElementById('bg').style.backgroundImage="url("+imgBgml.src+")"
               }else if (modeIcon=='moon'){// dark mobile image
                 console.log(modeIcon + '-moon modeIcon mobile');
                 document.getElementById('container-status').style.backgroundColor=darkMode
-                document.getElementById('box_stat').style.backgroundColor=darkMode
+                document.getElementById('box_stat').style.backgroundColor='#25273c'
                 document.getElementsByTagName('input')[0].style.color = lightMode
                 document.getElementById('bg').style.backgroundImage="url("+imgBgmd.src+")"
               }
@@ -612,36 +612,35 @@ function changeBg(x,modeIcon) {
 }
 
   // set background for different screen width and modeIcon(sun or dark modeIcon)
-  function myFunction(x,modeIcon) {
-
-  if (x.matches) { // If media query matches
-    //check if elements already exist to avoid duplication
-    if (document.getElementById('tag_clear')!=null) {
-          document.getElementById('tag_comp').remove()
-          document.getElementById('tag_active').remove()
-          document.getElementById('tag_clear').remove()
-          document.getElementById('tag_count').remove()
-        }
-    width_less();
-    document.getElementById('tag_all').style.display='inline'
-    document.getElementById('tag_active').style.display='inline'
-    document.getElementById('tag_comp').style.display='inline'
-
-  } else {
-      if (document.getElementById('box_stat')!=null) {
-        document.getElementById('box_stat').remove()
-        document.getElementById('p_counts').remove()
-        document.getElementById('tag_clear').remove()
-      }
-      width_greater();
-      document.getElementById('tag_clear').style.display='inline'
-      document.getElementById('tag_count').style.display='inline'
+function myFunction(x,modeIcon){
+    if (x.matches) { // If media query matches
+      //check if elements already exist to avoid duplication
+      if (document.getElementById('tag_clear')!=null) {
+            document.getElementById('tag_comp').remove()
+            document.getElementById('tag_active').remove()
+            document.getElementById('tag_clear').remove()
+            document.getElementById('tag_count').remove()
+          }
+      width_less();
       document.getElementById('tag_all').style.display='inline'
       document.getElementById('tag_active').style.display='inline'
       document.getElementById('tag_comp').style.display='inline'
 
-    }
-}
+    } else {
+        if (document.getElementById('box_stat')!=null) {
+          document.getElementById('box_stat').remove()
+          document.getElementById('p_counts').remove()
+          document.getElementById('tag_clear').remove()
+        }
+        width_greater();
+        document.getElementById('tag_clear').style.display='inline'
+        document.getElementById('tag_count').style.display='inline'
+        document.getElementById('tag_all').style.display='inline'
+        document.getElementById('tag_active').style.display='inline'
+        document.getElementById('tag_comp').style.display='inline'
+
+      }
+  }
 
   // create new todo
   function createNewDo(item){
