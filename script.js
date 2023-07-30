@@ -575,7 +575,24 @@ if (icon_svg.src =='https://affumbenjamin.github.io/todo_app/images/icon-sun.svg
   //change backgroundImage when icon is clicked
 function changeBg(x,modeIcon) {
       if (x.matches) { // If media query matches
-        //desktop
+                  //mobile background
+        if (modeIcon=='sun') {
+            console.log(modeIcon + '-sun modeIcon mobile');
+            document.getElementsByTagName('input')[0].style.color = lightMode
+            document.getElementById('box_stat').style.backgroundColor = darkMode // box for all active complete
+            document.getElementById('container-status').style.backgroundColor=darkMode;
+            document.getElementById('bg').style.backgroundImage="url("+imgBgmd.src+")"
+            att.style.color=lightMode;
+        }else if (modeIcon=='moon') {
+            att.style.color=darkMode;
+            document.getElementById('bg').style.backgroundImage="url("+imgBgml.src+")"
+            console.log(modeIcon+ '- modeIcon mobile test');
+            document.getElementsByTagName('input')[0].style.color = darkMode
+            document.getElementById('box_stat').style.backgroundColor=lightMode
+            document.getElementById('container-status').style.backgroundColor=lightMode
+          }
+      } else{
+                  //desktop
         if (modeIcon=='sun') {// light image
           console.log(modeIcon + '-sun modeIcon desktop');
           att.style.color=darkMode;
@@ -591,23 +608,6 @@ function changeBg(x,modeIcon) {
           document.getElementsByTagName('a')[6].style.color=darkMode
           document.getElementById('container-status').style.backgroundColor=lightMode// box for no items, clear completed
           document.getElementById('bg').style.backgroundImage="url("+imgBgdd.src+")"
-          }
-      } else{
-        //mobile background
-        if (modeIcon=='sun') {
-            console.log(modeIcon + '-sun modeIcon mobile');
-            document.getElementsByTagName('input')[0].style.color = lightMode
-            document.getElementById('box_stat').style.backgroundColor = darkMode // box for all active complete
-            document.getElementById('container-status').style.backgroundColor=darkMode;
-            document.getElementById('bg').style.backgroundImage="url("+imgBgmd.src+")"
-            att.style.color=lightMode;
-        }else if (modeIcon=='moon') {
-            att.style.color=darkMode;
-            document.getElementById('bg').style.backgroundImage="url("+imgBgml.src+")"
-            console.log(modeIcon+ '- modeIcon mobile test');
-            document.getElementsByTagName('input')[0].style.color = darkMode
-            document.getElementById('box_stat').style.backgroundColor=lightMode
-            document.getElementById('container-status').style.backgroundColor=lightMode
           }
 }
 }
