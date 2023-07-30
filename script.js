@@ -600,8 +600,8 @@ function changeBg(x,modeIcon) {
             document.getElementById('box_stat').style.backgroundColor=lightMode
             document.getElementById('container-status').style.backgroundColor=lightMode
           }
+    }
 }
-
   // set background for different screen width and modeIcon(sun or dark modeIcon)
 function myFunction(x,modeIcon){
     if (x.matches) { // If media query matches
