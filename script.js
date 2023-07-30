@@ -1,6 +1,6 @@
 var lightMode = 'white';
 var darkMode = '#25273c';
-var modeIcon = 'sun';//initiate current visible icon
+var modeIcon = 'moon';//initiate current visible icon
 let jsLoaded = false;
 var windowWidth, form, item;
 var count = 0;
