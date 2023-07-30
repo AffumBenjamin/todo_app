@@ -1,6 +1,6 @@
 var lightMode = 'white';
 var darkMode = '#25273c';
-var modeIcon = 'moon';//initiate current visible icon
+var modeIcon = 'sun';//initiate current visible icon
 let jsLoaded = false;
 var windowWidth, form, item;
 var count = 0;
@@ -511,7 +511,6 @@ if (icon_svg.src =='https://affumbenjamin.github.io/todo_app/images/icon-sun.svg
               }
         }
 
-
       //change icon to moon
       document.getElementById("icon_click").src='https://affumbenjamin.github.io/todo_app/images/icon-moon.svg'
 
@@ -534,7 +533,7 @@ if (icon_svg.src =='https://affumbenjamin.github.io/todo_app/images/icon-sun.svg
       if (document.getElementById('p_counts')!=null) {
         document.getElementById('p_counts').style.color = lightMode
         document.getElementById('tag_clear').style.color = lightMode
-        document.getElementById('box_stat').style.backgroundColor = lightMode
+        document.getElementById('box_stat').style.backgroundColor = darkMode
       }
       //background when Completed and ... become inline with rest of list
       if (document.getElementsByTagName('a')[3]!=null) {
@@ -572,12 +571,12 @@ function changeBg(x,modeIcon) {
               if (modeIcon=='sun') {// light mobile image
                 console.log(modeIcon + '-sun modeIcon mobile');
                 document.getElementById('container-status').style.backgroundColor=lightMode// box for no items, clear completed
-                document.getElementById('box_stat').style.backgroundColor = lightMode // box for all active complete
+                document.getElementById('box_stat').style.backgroundColor = darkMode // box for all active complete
                 document.getElementsByTagName('input')[0].style.color = darkMode;//fontcolor for form input
                 document.getElementById('bg').style.backgroundImage="url("+imgBgml.src+")"
               }else if (modeIcon=='moon'){// dark mobile image
                 document.getElementById('container-status').style.backgroundColor=darkMode
-                document.getElementById('box_stat').style.backgroundColor=darkMode
+                document.getElementById('box_stat').style.backgroundColor=lightMode
                 console.log(modeIcon + '- moon modeIcon fix me');
                 document.getElementsByTagName('input')[0].style.color = lightMode
                 document.getElementById('bg').style.backgroundImage="url("+imgBgmd.src+")"
