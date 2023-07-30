@@ -468,7 +468,7 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => imgDarkdLoaded = tr
 
   //if sun modeIcon
 if (icon_svg.src =='https://affumbenjamin.github.io/todo_app/images/icon-sun.svg') {
-      modeIcon = 'sun';
+      modeIcon = 'moon';
       document.getElementsByTagName('p')[0].style.color = darkMode;
       // change body background to white
       document.body.style.backgroundColor = lightMode;
@@ -516,7 +516,7 @@ if (icon_svg.src =='https://affumbenjamin.github.io/todo_app/images/icon-sun.svg
       document.getElementById("icon_click").src='https://affumbenjamin.github.io/todo_app/images/icon-moon.svg'
 
     }else if(icon_svg.src =='https://affumbenjamin.github.io/todo_app/images/icon-moon.svg'){
-      modeIcon = 'moon';
+      modeIcon = 'sun';
       // change body background to dark mode
       document.body.style.backgroundColor = darkMode;
       input_bg.style.backgroundColor = darkMode;
