@@ -584,7 +584,6 @@ function changeBg(x,modeIcon) {
           document.getElementById('container-status').style.backgroundColor=lightMode// box for no items, clear completed
           document.getElementById('bg').style.backgroundImage="url("+imgBgdd.src+")"
           }
-        }
       } else{
         //mobile background
         if (modeIcon=='sun') {
