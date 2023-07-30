@@ -567,24 +567,8 @@ changeBg(windowWidth,modeIcon);
   //change backgroundImage when icon is clicked
 function changeBg(x,modeIcon) {
       if (x.matches) { // If media query matches
-        //mobile background
-        if (modeIcon=='sun') {
-            console.log(modeIcon + '-sun modeIcon mobile');
-            document.getElementsByTagName('input')[0].style.color = lightMode
-            document.getElementById('box_stat').style.backgroundColor = darkMode // box for all active complete
-            document.getElementById('container-status').style.backgroundColor=darkMode
-            document.getElementById('bg').style.backgroundImage="url("+imgBgml.src+")"
-        }else if (modeIcon=='moon') {
-            att.style.color=lightMode;
-            console.log(modeIcon+ '- modeIcon mobile');
-            document.getElementsByTagName('input')[0].style.color = darkMode
-            document.getElementById('box_stat').style.backgroundColor=lightMode
-            document.getElementById('container-status').style.backgroundColor=lightMode
-            document.getElementById('bg').style.backgroundImage="url("+imgBgmd.src+")"
-          }
-      } else{
         //desktop
-        if (modeIcon=='sun') {// light mobile image
+        if (modeIcon=='sun') {// light image
           console.log(modeIcon + '-sun modeIcon desktop');
           att.style.color=darkMode;
           document.getElementsByTagName('input')[0].style.color = darkMode;//fontcolor for form input
@@ -601,6 +585,22 @@ function changeBg(x,modeIcon) {
           document.getElementById('bg').style.backgroundImage="url("+imgBgdd.src+")"
           }
         }
+      } else{
+        //mobile background
+        if (modeIcon=='sun') {
+          document.getElementById('bg').style.backgroundImage="url("+imgBgml.src+")"
+            console.log(modeIcon + '-sun modeIcon mobile');
+            document.getElementsByTagName('input')[0].style.color = lightMode
+            document.getElementById('box_stat').style.backgroundColor = darkMode // box for all active complete
+            document.getElementById('container-status').style.backgroundColor=darkMode;
+        }else if (modeIcon=='moon') {
+            att.style.color=lightMode;
+            document.getElementById('bg').style.backgroundImage="url("+imgBgmd.src+")"
+            console.log(modeIcon+ '- modeIcon mobile test');
+            document.getElementsByTagName('input')[0].style.color = darkMode
+            document.getElementById('box_stat').style.backgroundColor=lightMode
+            document.getElementById('container-status').style.backgroundColor=lightMode
+          }
 }
 
   // set background for different screen width and modeIcon(sun or dark modeIcon)
