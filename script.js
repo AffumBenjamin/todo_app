@@ -466,6 +466,13 @@ loadImg(imgBgdd, 'images/bg-desktop-dark.jpg').then((img) => imgDarkdLoaded = tr
   var input_bg = document.getElementsByTagName('li')[0];
   let att = document.getElementById('att'); //attribution
 
+  //screen size for each background
+  if (window.innerWidth <= 375) {
+    windowWidth = 'lesser';
+  }else if (window.innerWidth >= 375){
+     windowWidth = 'greater';
+   }
+
   //if sun modeIcon
 if (icon_svg.src =='https://affumbenjamin.github.io/todo_app/images/icon-sun.svg') {
       modeIcon = 'moon';
@@ -561,7 +568,8 @@ if (icon_svg.src =='https://affumbenjamin.github.io/todo_app/images/icon-sun.svg
       //change icon to sun
     document.getElementById("icon_click").src='https://affumbenjamin.github.io/todo_app/images/icon-sun.svg';
   }
-changeBg(windowWidth,modeIcon);
+  var x = window.matchMedia("(max-width: 375px)")
+  changeBg(x,modeIcon);
 }
 
   //change backgroundImage when icon is clicked
@@ -587,20 +595,21 @@ function changeBg(x,modeIcon) {
       } else{
         //mobile background
         if (modeIcon=='sun') {
-          document.getElementById('bg').style.backgroundImage="url("+imgBgml.src+")"
             console.log(modeIcon + '-sun modeIcon mobile');
             document.getElementsByTagName('input')[0].style.color = lightMode
             document.getElementById('box_stat').style.backgroundColor = darkMode // box for all active complete
             document.getElementById('container-status').style.backgroundColor=darkMode;
-        }else if (modeIcon=='moon') {
-            att.style.color=lightMode;
             document.getElementById('bg').style.backgroundImage="url("+imgBgmd.src+")"
+            att.style.color=lightMode;
+        }else if (modeIcon=='moon') {
+            att.style.color=darkMode;
+            document.getElementById('bg').style.backgroundImage="url("+imgBgml.src+")"
             console.log(modeIcon+ '- modeIcon mobile test');
             document.getElementsByTagName('input')[0].style.color = darkMode
             document.getElementById('box_stat').style.backgroundColor=lightMode
             document.getElementById('container-status').style.backgroundColor=lightMode
           }
-    }
+}
 }
   // set background for different screen width and modeIcon(sun or dark modeIcon)
 function myFunction(x,modeIcon){
