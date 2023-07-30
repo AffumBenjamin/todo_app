@@ -568,37 +568,37 @@ changeBg(windowWidth,modeIcon);
 function changeBg(x,modeIcon) {
       if (x.matches) { // If media query matches
         //mobile background
-              if (modeIcon=='sun') {// light mobile image
-                console.log(modeIcon + '-sun modeIcon mobile');
-                document.getElementById('container-status').style.backgroundColor=lightMode// box for no items, clear completed
-                document.getElementById('box_stat').style.backgroundColor = darkMode // box for all active complete
-                document.getElementsByTagName('input')[0].style.color = darkMode;//fontcolor for form input
-                document.getElementById('bg').style.backgroundImage="url("+imgBgml.src+")"
-              }else if (modeIcon=='moon'){// dark mobile image
-                document.getElementById('container-status').style.backgroundColor=darkMode
-                document.getElementById('box_stat').style.backgroundColor=lightMode
-                console.log(modeIcon + '- moon modeIcon fix me');
-                document.getElementsByTagName('input')[0].style.color = lightMode
-                document.getElementById('bg').style.backgroundImage="url("+imgBgmd.src+")"
-              }
-      } else{
-            //desktop background
-          if (modeIcon=='sun') {
-            console.log(modeIcon + '-sun modeIcon desktop');
-            att.style.color=darkMode;
-            document.getElementsByTagName('input')[0].style.color = darkMode
-            document.getElementsByTagName('a')[5].style.color=darkMode
-            document.getElementsByTagName('a')[6].style.color=darkMode
-            document.getElementById('container-status').style.backgroundColor=lightMode
-            document.getElementById('bg').style.backgroundImage="url("+imgBgdl.src+")"
-          }else if (modeIcon=='moon') {
-            att.style.color=lightMode;
-            console.log(modeIcon+ '- modeIcon desktop');
+        if (modeIcon=='sun') {
+            console.log(modeIcon + '-sun modeIcon mobile');
             document.getElementsByTagName('input')[0].style.color = lightMode
-            document.getElementsByTagName('a')[5].style.color=lightMode
-            document.getElementsByTagName('a')[6].style.color=lightMode
+            document.getElementById('box_stat').style.backgroundColor = darkMode // box for all active complete
             document.getElementById('container-status').style.backgroundColor=darkMode
-            document.getElementById('bg').style.backgroundImage="url("+imgBgdd.src+")"
+            document.getElementById('bg').style.backgroundImage="url("+imgBgml.src+")"
+        }else if (modeIcon=='moon') {
+            att.style.color=lightMode;
+            console.log(modeIcon+ '- modeIcon mobile');
+            document.getElementsByTagName('input')[0].style.color = darkMode
+            document.getElementById('box_stat').style.backgroundColor=lightMode
+            document.getElementById('container-status').style.backgroundColor=lightMode
+            document.getElementById('bg').style.backgroundImage="url("+imgBgmd.src+")"
+          }
+      } else{
+        //desktop
+        if (modeIcon=='sun') {// light mobile image
+          console.log(modeIcon + '-sun modeIcon desktop');
+          att.style.color=darkMode;
+          document.getElementsByTagName('input')[0].style.color = darkMode;//fontcolor for form input
+          document.getElementsByTagName('a')[5].style.color=lightMode
+          document.getElementsByTagName('a')[6].style.color=lightMode
+          document.getElementById('container-status').style.backgroundColor=darkMode
+          document.getElementById('bg').style.backgroundImage="url("+imgBgdl.src+")"
+        }else if (modeIcon=='moon'){// dark mobile image
+          console.log(modeIcon + '- moon modeIcon fix me');
+          document.getElementsByTagName('input')[0].style.color = lightMode
+          document.getElementsByTagName('a')[5].style.color=darkMode
+          document.getElementsByTagName('a')[6].style.color=darkMode
+          document.getElementById('container-status').style.backgroundColor=lightMode// box for no items, clear completed
+          document.getElementById('bg').style.backgroundImage="url("+imgBgdd.src+")"
           }
         }
 }
