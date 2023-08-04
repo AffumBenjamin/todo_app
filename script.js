@@ -645,6 +645,7 @@ function myFunction(x,modeIcon){
   // create new todo
   function createNewDo(item){
 
+    var newLen = 0;
     let wrapper = document.getElementsByClassName('container-new')[0];
     // create a new item inside a div(wrapper)
      box = document.createElement('div');//sub container
@@ -657,7 +658,6 @@ function myFunction(x,modeIcon){
      img_cross = document.createElement('img');
      br = document.createElement('br');
      img_check = document.createElement('img');
-     var newLen = 0;
      inp_chk = document.createElement('input');
      label = document.createElement('label');
 
@@ -779,8 +779,13 @@ function myFunction(x,modeIcon){
         newBox.style.borderBottom ='1px solid hsl(240deg 6.21% 65.29%)'
 
         document.getElementsByClassName(list_ovals)[0].style.display='inline'
+        document.getElementsByTagName('label')[count].style.display='inline-block'
         //document.getElementById(li_cir).style.display='inline'
         document.getElementsByClassName(cross)[0].style.display='inline'
+
+        document.getElementsByTagName('label')[count].style.width = '80%'
+        document.getElementsByClassName(list_ovals)[0].style.width= '10'
+        document.getElementsByClassName(cross)[0].style.width= '10%'
 
       var bx = document.getElementsByClassName('boxes');
       var box_len = document.getElementsByClassName('boxes').length
@@ -958,8 +963,9 @@ function myFunction(x,modeIcon){
         document.getElementsByClassName(cross)[0].style.display='inline'
       }
 
-      //hide scrolls
       let lenScroll = 0
+/*
+      //hide scrolls
       if (document.getElementsByClassName('complete')[0]!=undefined) {
         // if any complete boxes exist
         let cLen = document.getElementsByClassName('complete')[0].length
@@ -972,13 +978,15 @@ function myFunction(x,modeIcon){
         let bLen = document.getElementsByClassName('boxes').length
         lenScroll = bLen
       }
-
+*/
+      lenScroll= count
       if (lenScroll<7) {
           document.getElementsByClassName('container-new')[0].style.overflow='hidden'
       }else {
           document.getElementsByClassName('container-new')[0].style.overflow='scroll'
       }
-
+      console.log(lenScroll+ ' length scrolled');
+      updateCounter(1,0,lenScroll)
       event.preventDefault();
     });
   }
@@ -1122,10 +1130,12 @@ function myFunction(x,modeIcon){
                       changeListClass.setAttribute('class',crs_num)
                     }
 
+                    /*
                     if (document.getElementsByTagName('div')[len+8].children[0].children[0].children[0]!=null) {//p
                       var changeListClass = document.getElementsByTagName('div')[len+8].children[0].children[0].children[0]
                       changeListClass.setAttribute('class',len)
                     }
+                    */
 
                     if (document.getElementsByTagName('div')[len+8].children[0].children[1].children[0]!=null) {
                       var changeListClass = document.getElementsByTagName('div')[len+8].children[0].children[1].children[0]
